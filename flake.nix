@@ -16,7 +16,10 @@
 	  {
             name = hostName;
             value = nixpkgs.lib.nixosSystem {
-              specialArgs = { inherit inputs; };
+              specialArgs = {
+	        inherit inputs;
+		root = self;
+	      };
               modules = [
 	        ./hosts/${hostName}/configuration.nix
       

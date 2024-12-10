@@ -2,19 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, root, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
+      "${root}/modules/bootloader/grub.nix"
       ./hardware-configuration.nix
     ];
 
   nix.settings.experimental-features = "nix-command flakes";
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
