@@ -28,12 +28,6 @@ echo "Done partitioning and formatting disk!"
 sudo mkdir -p /mnt/etc/nixos
 echo "Done creating NixOS configuration folder!"
 
-# Generate hardware configuration (and only hardware configuration)
-sudo nixos-generate-config --root /mnt
-sudo rm /mnt/etc/nixos/configuration.nix
-sudo cp /mnt/etc/nixos/hardware-configuration.nix "./hosts/$HOSTNAME/"
-echo "Done generating hardware configuration!"
-
 # Install NixOS (nextOS)
 sudo cp -r ./* /mnt/etc/nixos
 cd /mnt
@@ -43,6 +37,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo "Done installing NixOS!"
+
+# Generate hardware configuration (and only hardware configuration)
+sudo nixos-generate-config --root /mnt
+sudo rm /mnt/etc/nixos/configuration.nix
+sudo mv /mnt/etc/nixos/hardware-configuration.nix "/mnt/etc/nixos/hosts/$HOSTNAME"
+echo "Done generating hardware configuration!"
 
 # Welcome the user
 echo "Welcome to nextOS!"
