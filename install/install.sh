@@ -31,6 +31,7 @@ echo "Done creating NixOS configuration folder!"
 # Generate hardware configuration (and only hardware configuration)
 sudo nixos-generate-config --root /mnt
 sudo rm /mnt/etc/nixos/configuration.nix
+sudo cp /mnt/etc/nixos/hardware-configuration.nix "./hosts/$HOSTNAME/"
 echo "Done generating hardware configuration!"
 
 # Install NixOS (nextOS)

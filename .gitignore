@@ -1,0 +1,2 @@
+# Ignore any hardware-configuration.nix file in the repository
+**/hardware-configuration.nix
