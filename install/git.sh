@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Generate SSH key
 yes "" | ssh-keygen -N '' -t ed25519 -C "simonashton.dev@gmail.com"
 

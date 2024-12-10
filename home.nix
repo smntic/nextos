@@ -8,6 +8,10 @@
     userEmail = "simonashton.dev@gmail.com";
   };
 
-  # You probably don't want to change this.
-  home.stateVersion = "25.05";
+  home = {
+    packages = [pkgs.tree pkgs.git pkgs.neovim];
+
+    # You probably don't want to change this.
+    stateVersion = "25.05";
+  };
 }
