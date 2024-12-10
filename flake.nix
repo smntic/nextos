@@ -7,20 +7,30 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
-      vm = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-	  ./configuration.nix
-
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.root = import ./home.nix;
-          }
-	];
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      fileHelpers = import ./lib/file_helpers.nix;
+    in
+      {
+        nixosConfigurations = fileHelpers.forFile ./hosts (hostName:
+	  {
+            name = hostName;
+            value = nixpkgs.lib.nixosSystem {
+              specialArgs = { inherit inputs; };
+              modules = [
+	        ./hosts/${hostName}/configuration.nix
+      
+                home-manager.nixosModules.home-manager {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+		  home-manager.users = fileHelpers.forFile ./hosts/${hostName}/users (userName:
+		    {
+		      name = userName;
+		      value = import ./hosts/${hostName}/users/${userName}/home.nix;
+		    });
+                }
+	      ];
+            };
+	  });
       };
-    };
-  };
 }
