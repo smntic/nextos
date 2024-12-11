@@ -6,12 +6,15 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       "${root}/modules/bootloader/grub.nix"
+      "${root}/modules/server/ssh.nix"
       ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = "nix-command flakes";
+  ssh.server = true;
+  ssh.allowPassword = true;
+  ssh.allowRoot = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -84,12 +87,6 @@
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "yes";  # TODO: not this.
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

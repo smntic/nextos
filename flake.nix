@@ -9,10 +9,10 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      fileHelpers = import ./lib/file_helpers.nix;
+      file = import ./lib/helpers/file.nix;
     in
       {
-        nixosConfigurations = fileHelpers.forFile ./hosts (hostName:
+        nixosConfigurations = file.forFile ./hosts (hostName:
 	  {
             name = hostName;
             value = nixpkgs.lib.nixosSystem {
@@ -21,12 +21,13 @@
 		root = self;
 	      };
               modules = [
+		./core/configuration.nix
 	        ./hosts/${hostName}/configuration.nix
       
                 home-manager.nixosModules.home-manager {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-		  home-manager.users = fileHelpers.forFile ./hosts/${hostName}/users (userName:
+		  home-manager.users = file.forFile ./hosts/${hostName}/users (userName:
 		    {
 		      name = userName;
 		      value = import ./hosts/${hostName}/users/${userName}/home.nix;
