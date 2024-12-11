@@ -16,19 +16,10 @@
   ssh.allowPassword = true;
   ssh.allowRoot = true;
 
-  users.users = {
-    simon = {
-      initialPassword = "correctHorseBatteryStaple";
-      isNormalUser = true;
-      extraGroups = [ "wheel" ];
-    };
-
-    guest = {
-      initialPassword = "guest";
-      isNormalUser = true;
-      extraGroups = [];
-    };
-  };
+  #services.xserver.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.wayland.enable = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
