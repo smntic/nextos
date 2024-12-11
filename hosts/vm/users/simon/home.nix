@@ -13,6 +13,7 @@
       pkgs.tree
       pkgs.git
       pkgs.neovim
+      pkgs.cowsay
     ];
 
     stateVersion = "24.11";

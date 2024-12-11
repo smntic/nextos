@@ -16,6 +16,20 @@
   ssh.allowPassword = true;
   ssh.allowRoot = true;
 
+  users.users = {
+    simon = {
+      initialPassword = "correctHorseBatteryStaple";
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
+
+    guest = {
+      initialPassword = "guest";
+      isNormalUser = true;
+      extraGroups = [];
+    };
+  };
+
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -59,15 +73,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.simon = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     tree
-  #   ];
-  # };
 
   # programs.firefox.enable = true;
 
