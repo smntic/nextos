@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   programs.git = {
@@ -14,7 +14,7 @@
       pkgs.git
       pkgs.neovim
     ];
-
+ 
     stateVersion = "24.11";
   };
 }

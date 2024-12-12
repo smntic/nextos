@@ -1,12 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  programs.git = {
-    enable = true;
-
-    userName = "Simon Ashton";
-    userEmail = "simonashton.dev@gmail.com";
-  };
+  imports = [
+    ./desktop/hyprland.nix
+  ];
 
   home = {
     packages = [
@@ -17,5 +14,29 @@
     ];
 
     stateVersion = "24.11";
+  };
+
+  programs = {
+    git = {
+      enable = true;
+
+      userName = "Simon Ashton";
+      userEmail = "simonashton.dev@gmail.com";
+    };
+
+    bash = {
+      enable = true;
+
+      # Replace TTY with hyprland
+      initExtra = ''
+        if [ -z $WAYLAND_DISPLAY ]; then
+	  Hyprland
+	  logout
+	fi
+      '';
+    };
+
+    # TODO: not this; this is temporary fix to test Hyprland
+    kitty.enable = true;
   };
 }

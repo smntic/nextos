@@ -27,11 +27,6 @@
                 home-manager.nixosModules.home-manager {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-		  home-manager.users = file.setForFile ./hosts/${hostName}/users (userName:
-		    {
-		      name = userName;
-		      value = import ./hosts/${hostName}/users/${userName}/home.nix;
-		    });
                 }
 	      ] ++ file.listForFile ./hosts/${hostName}/users (userName:
 	          ./hosts/${hostName}/users/${userName}/user.nix);

@@ -16,11 +16,6 @@
   ssh.allowPassword = true;
   ssh.allowRoot = true;
 
-  #services.xserver.enable = true;
-  #services.displayManager.sddm.enable = true;
-  #services.desktopManager.plasma6.enable = true;
-  #services.displayManager.sddm.wayland.enable = true;
-
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
