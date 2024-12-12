@@ -1,6 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = [pkgs.swww];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -24,5 +26,8 @@
             9)
         );
     }; 
+    extraConfig = ''
+      exec-once = swww-daemon && swww img /etc/nixos/hosts/vm/users/simon/desktop/nyan.gif
+    '';
   };
 }
