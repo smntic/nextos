@@ -27,7 +27,7 @@
         );
     }; 
     extraConfig = ''
-      exec-once = swww-daemon && swww img /etc/nixos/hosts/vm/users/simon/desktop/nyan.gif
+      exec-once = swww-daemon && swww img /etc/nixos/hosts/nitro/users/simon/desktop/nyan.gif
     '';
   };
 }
