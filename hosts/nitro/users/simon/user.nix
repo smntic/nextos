@@ -8,7 +8,7 @@
   users.users.simon = {
     initialPassword = "correctHorseBatteryStaple";
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   home-manager.users.simon = import ./home.nix { inherit pkgs; };
