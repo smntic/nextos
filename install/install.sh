@@ -31,7 +31,7 @@ echo "Done creating NixOS configuration folder!"
 # Install NixOS (nextOS)
 sudo cp -r ./* /mnt/etc/nixos
 cd /mnt
-sudo nixos-install --flake ./etc/nixos#vm
+sudo nixos-install --flake "/mnt/etc/nixos#$HOSTNAME"
 if [ $? -ne 0 ]; then
     echo "Error in installing NixOS!"
     exit 1
