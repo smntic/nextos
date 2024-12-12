@@ -29,7 +29,7 @@ sudo mkdir -p /mnt/etc/nixos
 echo "Done creating NixOS configuration folder!"
 
 # Copy nextOS files
-sudo cp -r ./* /mnt/etc/nixos
+sudo cp -r ./. /mnt/etc/nixos
 
 # Generate hardware configuration (and only hardware configuration)
 sudo nixos-generate-config --root /mnt
