@@ -9,6 +9,8 @@
     [
       "${root}/modules/bootloader/grub.nix"
       "${root}/modules/server/ssh.nix"
+      "${root}/modules/server/ssh.nix"
+      "${root}/modules/audio/pipewire.nix"
       ./hardware-configuration.nix
     ];
 
