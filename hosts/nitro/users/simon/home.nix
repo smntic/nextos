@@ -13,6 +13,11 @@
       pkgs.cowsay
     ];
 
+    shellAliases = {
+      hypr = "Hyprland";
+      hyprexit = "hyprctl dispatch exit";
+    };
+
     stateVersion = "24.11";
   };
 
@@ -26,14 +31,6 @@
 
     bash = {
       enable = true;
-
-      # Replace TTY with hyprland
-      initExtra = ''
-        if [ -z $WAYLAND_DISPLAY ]; then
-	  Hyprland
-	  logout
-	fi
-      '';
     };
   };
 }
