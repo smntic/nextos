@@ -35,8 +35,5 @@
 	fi
       '';
     };
-
-    # TODO: not this; this is temporary fix to test Hyprland
-    kitty.enable = true;
   };
 }
