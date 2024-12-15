@@ -1,13 +1,66 @@
 { pkgs, inputs, ... }:
 
 let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+  startupScript = pkgs.pkgs.writeShellScript "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
 
     sleep 0.5
 
     ${pkgs.swww}/bin/swww img ${./black.jpg} &
+  '';
+
+  # https://github.com/hyprwm/Hyprland/issues/2321#issuecomment-1583184411
+  moveWindowScript = pkgs.pkgs.writeShellScript "move_window" ''
+    MOVE_SIZE=''${1:?Missing size}
+    
+    MOVE_PARAMS_X=0
+    MOVE_PARAMS_Y=0
+    
+    DIRECTION=''${2:?Missing move direction}
+    case $DIRECTION in
+    l)
+      MOVE_PARAMS_X=-$MOVE_SIZE
+      ;;
+    r)
+      MOVE_PARAMS_X=$MOVE_SIZE
+      ;;
+    u)
+      MOVE_PARAMS_Y=-$MOVE_SIZE
+      ;;
+    d)
+      MOVE_PARAMS_Y=$MOVE_SIZE
+      ;;
+    *)
+      return 1
+      ;;
+    esac
+
+    MOVE_TYPE=''${3:?Missing move type}
+    
+    ACTIVE_WINDOW=$(hyprctl activewindow -j)
+    IS_FLOATING=$(echo "$ACTIVE_WINDOW" | jq .floating)
+    
+    if [ "$MOVE_TYPE" = "move" ]; then
+      if [ "$IS_FLOATING" = "true" ]; then
+        hyprctl dispatch moveactive "$MOVE_PARAMS_X" "$MOVE_PARAMS_Y"
+      else
+        hyprctl dispatch movewindow "$DIRECTION"
+      fi
+    elif [ "$MOVE_TYPE" = "resize" ]; then
+      hyprctl dispatch resizeactive "$MOVE_PARAMS_X" "$MOVE_PARAMS_Y"
+    fi
+  '';
+
+  toggleFloatingScript = pkgs.pkgs.writeShellScript "toggle_floating" ''
+    ACTIVE_WINDOW=$(hyprctl activewindow -j)
+    IS_FLOATING=$(echo "$ACTIVE_WINDOW" | jq .floating)
+
+    if [ "$IS_FLOATING" = "true" ]; then
+      hyprctl dispatch focuswindow tiled
+    else
+      hyprctl dispatch focuswindow floating
+    fi
   '';
 in
   {
@@ -37,6 +90,9 @@ in
       # Fonts
       pkgs.nerd-fonts.symbols-only
       pkgs.dejavu_fonts
+
+      # Misc
+      pkgs.jq # Required for move window script
     ];
 
     # Font config
@@ -56,11 +112,16 @@ in
 	  # Disable splash screen
           disable_hyprland_logo = true;
 	  disable_splash_rendering = true;
+
+	  # Animate events like resizeactive
+	  animate_manual_resizes = true;
 	};
 
 	# Monitor settings
 	monitor = ", preferred, auto, 1";
 
+
+	# Bindings
         "$mod" = "SUPER";
 
         bindle = [
@@ -71,6 +132,12 @@ in
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ];
+
+        bindm = [
+	  # Move/resize windows with mouse
+	  "$mod, mouse:272, movewindow"
+	  "$mod, mouse:273, resizewindow"
+	];
 
         bind = [
 	  # Kill active window
@@ -90,11 +157,23 @@ in
 	  "$mod, k, movefocus, u"
 	  "$mod, j, movefocus, d"
 
-	  # Move window position
-	  "$mod SHIFT, h, movewindow, l"
-	  "$mod SHIFT, l, movewindow, r"
-	  "$mod SHIFT, k, movewindow, u"
-	  "$mod SHIFT, j, movewindow, d"
+	  # Move window
+	  "$mod SHIFT, h, exec, ${moveWindowScript} 100 l move"
+	  "$mod SHIFT, j, exec, ${moveWindowScript} 100 d move"
+	  "$mod SHIFT, k, exec, ${moveWindowScript} 100 u move"
+	  "$mod SHIFT, l, exec, ${moveWindowScript} 100 r move"
+
+	  # Resize window
+	  "$mod ALT, h, exec, ${moveWindowScript} 100 l resize"
+	  "$mod ALT, j, exec, ${moveWindowScript} 100 d resize"
+	  "$mod ALT, k, exec, ${moveWindowScript} 100 u resize"
+	  "$mod ALT, l, exec, ${moveWindowScript} 100 r resize"
+	  
+	  # Toggle window floating
+	  "$mod SHIFT, SPACE, togglefloating"
+
+	  # Toggle focus between floating and tiled windows
+	  "$mod, SPACE, exec, ${toggleFloatingScript}"
         ] ++ (
 	  # Switch workspaces
 	  builtins.concatLists (builtins.genList (i:
@@ -108,7 +187,28 @@ in
 	  ) 9)
 	);
 
-        exec-once = ''${startupScript}/bin/start'';
+        exec-once = ''${startupScript}'';
+
+        general = {
+          gaps_in = 3;
+	  gaps_out = 6;
+	  border_size = 1;
+  
+  	  "col.active_border" = "rgba(FFFFFFFF)";
+  	  "col.inactive_border" = "rgba(AAAAAAFF)";
+        };
+
+        animation = [
+	  "windows, 1, 3, default"
+	  "layers, 1, 3, default"
+	  "fade, 1, 3, default"
+	  "border, 1, 5, default"
+	  "workspaces, 1, 5, default"
+	];
+
+	gestures = {
+          workspace_swipe = true;
+	};
       };
     };
 
