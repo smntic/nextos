@@ -1,13 +1,17 @@
 { pkgs, inputs, ... }:
 
 let
+  loadWallpaper = pkgs.pkgs.writeShellScript "load_wallpaper" ''
+    ${pkgs.swww}/bin/swww img ${../assets/wallpapers/sakura.gif} &
+  '';
+
   startupScript = pkgs.pkgs.writeShellScript "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
 
     sleep 0.5
 
-    ${pkgs.swww}/bin/swww img ${./black.jpg} &
+    ${loadWallpaper}
   '';
 
   # https://github.com/hyprwm/Hyprland/issues/2321#issuecomment-1583184411
@@ -37,7 +41,6 @@ let
     esac
 
     MOVE_TYPE=''${3:?Missing move type}
-    
     ACTIVE_WINDOW=$(hyprctl activewindow -j)
     IS_FLOATING=$(echo "$ACTIVE_WINDOW" | jq .floating)
     
@@ -89,7 +92,8 @@ in
 
       # Fonts
       pkgs.nerd-fonts.symbols-only
-      pkgs.dejavu_fonts
+      pkgs.ibm-plex
+      pkgs.ark-pixel-font
 
       # Misc
       pkgs.jq # Required for move window script
@@ -100,7 +104,7 @@ in
       enable = true;
 
       defaultFonts = {
-        monospace = [ "DejaVu Sans Mono" ];
+        monospace = [ "IBM Plex Mono" ];
       };
     };
 
@@ -198,6 +202,12 @@ in
   	  "col.inactive_border" = "rgba(AAAAAAFF)";
         };
 
+	decoration = {
+          shadow = {
+            enabled = false;
+	  };
+	};
+
         animation = [
 	  "windows, 1, 3, default"
 	  "layers, 1, 3, default"
@@ -215,7 +225,7 @@ in
     programs.waybar = {
       enable = true;
       settings.mainBar = {
-        modules-left = [ "custom/icon" "hyprland/workspaces" ];
+        modules-left = [ "hyprland/workspaces" ];
         modules-right = [
 	  "network"
 	  "custom/separator"
@@ -270,45 +280,45 @@ in
 	  tooltip = false;
 	};
 
-	"custom/icon" = {
-	  format = " ";
-          interval = "none";
-	  tooltip = false;
-	};
-
 	"custom/separator" = {
 	  format = "|";
-          interval = "none";
+	  interval = "once";
 	  tooltip = false;
 	};
       };
 
       style = ''
         * {
-          font-family: monospace;
+	  font-family: 'Ark Pixel 12px Monospaced latin';
+	  font-size: 16px;
         }
         
         window#waybar {
-          background: rgba(70, 70, 70, 0.5);
-          padding: 0.5em;
+          background: rgb(37, 107, 139);
         }
         
         #workspaces button {
-          margin: 0 0.2em;
+          margin-right: 0.2em;
           padding: 0 0.5em;
           color: white;
-          border: 1px solid transparent;
+	  border: none;
+          border-bottom: 4px solid transparent;
+          border-radius: 0;
         }
         
         #workspaces button:hover {
-          background: rgba(100, 100, 100, 0.5);
+          background: rgba(255, 255, 255, 0.2);
           box-shadow: inherit;
         }
                 
         #workspaces button.active {
-          border-bottom: 1px solid blue;
-          border-radius: 0;
+          background: rgba(255, 255, 255, 0.1);
+	  border-color: rgb(240, 160, 190);
         }
+
+	#workspaces button.active:hover {
+          background: rgba(255, 255, 255, 0.2);
+	}
         
         .modules-right label.module {
           color: rgb(220, 220, 220);
