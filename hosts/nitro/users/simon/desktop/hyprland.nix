@@ -9,7 +9,7 @@ let
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
 
-    sleep 0.5
+    sleep 1
 
     ${loadWallpaper}
   '';
@@ -77,9 +77,6 @@ in
       # Notifications
       pkgs.mako
       pkgs.libnotify
-  
-      # Terminal
-      pkgs.kitty
 
       # Browser
       pkgs.firefox
@@ -92,19 +89,25 @@ in
 
       # Fonts
       pkgs.nerd-fonts.symbols-only
-      pkgs.ibm-plex
-      pkgs.ark-pixel-font
+      pkgs.dejavu_fonts
+
+      # Cursors
+      pkgs.capitaine-cursors
 
       # Misc
       pkgs.jq # Required for move window script
     ];
+
+    home.sessionVariables = {
+      SHELL = "zsh";
+    };
 
     # Font config
     fonts.fontconfig = {
       enable = true;
 
       defaultFonts = {
-        monospace = [ "IBM Plex Mono" ];
+        monospace = [ "DejaVu Sans Mono" ];
       };
     };
 
@@ -219,133 +222,161 @@ in
 	gestures = {
           workspace_swipe = true;
 	};
+
+	env = [
+	  "XCURSOR_THEME,capitaine-cursors"
+          "XCURSOR_SIZE,16"
+	];
       };
     };
 
-    programs.waybar = {
+    gtk = {
       enable = true;
-      settings.mainBar = {
-        modules-left = [ "hyprland/workspaces" ];
-        modules-right = [
-	  "network"
-	  "custom/separator"
-	  "disk"
-	  "custom/separator"
-	  "memory"
-	  "custom/separator"
-	  "battery"
-	  "custom/separator"
-	  "wireplumber"
-	];
 
-	network = {
-	  format-wifi = "󰖩 {essid} {signalStrength}% : {ipaddr}";
-	  format-ethernet = "󰈀 {cidr} : {ipaddr}";
-	  format-disconnected = "󰖪 Disconnected";
-	  interval = 1;
-	  tooltip = false;
-	};
+      cursorTheme = {
+        name = "capitaine-cursors";
+	size = 16;
+      };
+    };
 
-	disk = {
-	  format = "󰗮 {specific_free:0.1f} GB";
-	  unit = "GB";
-	  interval = 1;
-	  tooltip = false;
-	};
-
-	memory = {
-	  format = "󰍛 {used:0.1f} GB";
-          interval = 1;
-	  tooltip = false;
-	};
-
-	battery = {
-	  states = {
-            warning = 30;
-	    critical = 15;
+    programs = {
+      waybar = {
+        enable = true;
+        settings.mainBar = {
+          modules-left = [ "hyprland/workspaces" ];
+          modules-right = [
+	    "network"
+	    "custom/separator"
+	    "disk"
+	    "custom/separator"
+	    "memory"
+	    "custom/separator"
+	    "battery"
+	    "custom/separator"
+	    "wireplumber"
+	  ];
+  
+	  network = {
+	    format-wifi = "󰖩 {essid} {signalStrength}% : {ipaddr}";
+	    format-ethernet = "󰈀 {cidr} : {ipaddr}";
+	    format-disconnected = "󰖪 Disconnected";
+	    interval = 1;
+	    tooltip = false;
 	  };
-          "format-charging" = "󱐥 {capacity}%";
-          "format-discharging" = "󱐤 {capacity}%";
-          "format-full" = "󰚥 {capacity}%";
-          "format-not charging" = "󰚥 {capacity}%";
-          "format-unknown" = " {capacity}%";
-          interval = 1;
-	  tooltip = false;
-	};
-
-	wireplumber = {
-	  format = "󰎇 {volume}%";
-	  format-muted = "󰎊 {volume}%";
-	  interval = 1;
-	  tooltip = false;
-	};
-
-	"custom/separator" = {
-	  format = "|";
-	  interval = "once";
-	  tooltip = false;
-	};
+  
+	  disk = {
+	    format = "󰗮 {specific_free:0.1f} GB";
+	    unit = "GB";
+	    interval = 1;
+	    tooltip = false;
+	  };
+  
+	  memory = {
+	    format = "󰍛 {used:0.1f} GB";
+            interval = 1;
+	    tooltip = false;
+	  };
+  
+	  battery = {
+	    states = {
+              warning = 30;
+	      critical = 15;
+	    };
+            "format-charging" = "󱐥 {capacity}%";
+            "format-discharging" = "󱐤 {capacity}%";
+            "format-full" = "󰚥 {capacity}%";
+            "format-not charging" = "󰚥 {capacity}%";
+            "format-unknown" = " {capacity}%";
+            interval = 1;
+	    tooltip = false;
+	  };
+  
+	  wireplumber = {
+	    format = "󰎇 {volume}%";
+	    format-muted = "󰎊 {volume}%";
+	    interval = 1;
+	    tooltip = false;
+	  };
+  
+	  "custom/separator" = {
+	    format = "|";
+	    interval = "once";
+	    tooltip = false;
+	  };
+        };
+  
+        style = ''
+          * {
+	    font-family: 'monospace';
+          }
+          
+          window#waybar {
+            background: rgb(37, 107, 139);
+          }
+          
+          #workspaces button {
+            margin-right: 0.2em;
+            padding: 0 0.5em;
+            color: white;
+	    border: none;
+            border-bottom: 4px solid transparent;
+            border-radius: 0;
+          }
+          
+          #workspaces button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: inherit;
+          }
+                  
+          #workspaces button.active {
+            background: rgba(255, 255, 255, 0.1);
+	    border-color: rgb(240, 160, 190);
+          }
+  
+	  #workspaces button.active:hover {
+            background: rgba(255, 255, 255, 0.2);
+	  }
+          
+          .modules-right label.module {
+            color: rgb(220, 220, 220);
+            margin-right: 0.5em;
+          }
+  
+          #network.wifi, #network.linked, #network.ethernet {
+            color: rgb(120, 230, 140);
+          }
+          
+          #network.disabled, #network.disconnected {
+            color: rgb(225, 100, 80);
+          }
+          
+          #wireplumber.muted {
+            color: rgb(225, 100, 80);
+          }
+  
+	  #custom-icon {
+	    font-size: 1.3em;
+            color: rgb(50, 140, 235);
+	    margin-left: 0.3em;
+	  }
+  
+	  #custom-separator {
+            color: rgb(180, 180, 180);
+	  }
+        '';
       };
 
-      style = ''
-        * {
-	  font-family: 'Ark Pixel 12px Monospaced latin';
-	  font-size: 16px;
-        }
-        
-        window#waybar {
-          background: rgb(37, 107, 139);
-        }
-        
-        #workspaces button {
-          margin-right: 0.2em;
-          padding: 0 0.5em;
-          color: white;
-	  border: none;
-          border-bottom: 4px solid transparent;
-          border-radius: 0;
-        }
-        
-        #workspaces button:hover {
-          background: rgba(255, 255, 255, 0.2);
-          box-shadow: inherit;
-        }
-                
-        #workspaces button.active {
-          background: rgba(255, 255, 255, 0.1);
-	  border-color: rgb(240, 160, 190);
-        }
+      kitty = {
+	enable = true;
+        themeFile = "Catppuccin-Mocha";
+      };
 
-	#workspaces button.active:hover {
-          background: rgba(255, 255, 255, 0.2);
-	}
-        
-        .modules-right label.module {
-          color: rgb(220, 220, 220);
-          margin-right: 0.5em;
-        }
+      tmux = {
+        enable = true;
 
-        #network.wifi, #network.linked, #network.ethernet {
-          color: rgb(120, 230, 140);
-        }
-        
-        #network.disabled, #network.disconnected {
-          color: rgb(225, 100, 80);
-        }
-        
-        #wireplumber.muted {
-          color: rgb(225, 100, 80);
-        }
-
-	#custom-icon {
-	  font-size: 1.3em;
-          color: rgb(50, 140, 235);
-	  margin-left: 0.3em;
-	}
-
-	#custom-separator {
-          color: rgb(180, 180, 180);
-	}
-      '';
+	extraConfig = ''
+          set-option -g status-right ''''
+	'';
+      };
     };
   }

@@ -3,6 +3,7 @@
 {
   imports = [
     ./desktop/hyprland.nix
+    ./shell/zsh.nix
   ];
 
   home = {
@@ -29,8 +30,7 @@
       userEmail = "simonashton.dev@gmail.com";
     };
 
-    bash = {
-      enable = true;
-    };
+    # Enable bash here so aliases apply to it as well.
+    bash.enable = true;
   };
 }
