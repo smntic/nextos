@@ -5,6 +5,10 @@
     pkgs.fzf
   ];
 
+  home.sessionVariables = {
+    SHELL = "${pkgs.zsh}/bin/zsh";
+  };
+
   programs.zsh = {
     enable = true;
 
@@ -36,6 +40,9 @@
       source <(fzf --zsh)
       source ${./p10k.zsh}
 
+      # Fix for suggestion font color in tmux (https://github.com/zsh-users/zsh-autosuggestions/issues/229)
+      export TERM=xterm-256color
+
       # fzf widget to automatically run history item after accepting
       fzf-auto-history-widget() {
         fzf-history-widget
@@ -48,9 +55,16 @@
 	zle accept-line
       }
 
+      # Quick run tmux function
+      run-tmux-widget() {
+        tmux <>$TTY
+	zle redisplay
+      }
+
       # Create the widgets
       zle -N fzf-auto-history-widget
       zle -N fzf-auto-file-widget
+      zle -N run-tmux-widget
 
       # fzf cd bindings
       bindkey '^F' fzf-cd-widget
@@ -62,6 +76,9 @@
       # fzf file bindings
       bindkey '^T' fzf-auto-file-widget
       bindkey '^[t' fzf-file-widget
+
+      # Quick program bindings
+      bindkey '^[[116;6u' run-tmux-widget
 
       # Delete forward
       bindkey '\e[3~' delete-char
@@ -75,18 +92,20 @@
       bindkey '^H' backward-delete-word
       
       # Move backward a word
-      bindkey ';3D' backward-word
-      bindkey ';5D' backward-word
-      bindkey ';7D' backward-word
+      bindkey '^[[1;3D' backward-word
+      bindkey '^[[1;5D' backward-word
+      bindkey '^[[1;7D' backward-word
       
       # Move forward a word
-      bindkey ';3C' forward-word
-      bindkey ';5C' forward-word
-      bindkey ';7C' forward-word
+      bindkey '^[[1;3C' forward-word
+      bindkey '^[[1;5C' forward-word
+      bindkey '^[[1;7C' forward-word
       
       # Move to home/end
       bindkey '^[[H' beginning-of-line
+      bindkey '^[[1~' beginning-of-line
       bindkey '^[[F' end-of-line
+      bindkey '^[[4~' end-of-line
       
       # Change the definition of a "word"
       WORDCHARS=''${WORDCHARS//\//}

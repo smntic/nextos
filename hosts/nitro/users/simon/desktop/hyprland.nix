@@ -1,17 +1,13 @@
 { pkgs, inputs, ... }:
 
 let
-  loadWallpaper = pkgs.pkgs.writeShellScript "load_wallpaper" ''
-    ${pkgs.swww}/bin/swww img ${../assets/wallpapers/sakura.gif} &
-  '';
-
-  startupScript = pkgs.pkgs.writeShellScript "start" ''
+  setupScript = pkgs.pkgs.writeShellScript "setup" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
+  '';
 
-    sleep 1
-
-    ${loadWallpaper}
+  reloadScript = pkgs.pkgs.writeShellScript "reload" ''
+    ${pkgs.swww}/bin/swww img ${../assets/wallpapers/sakura.gif} &
   '';
 
   # https://github.com/hyprwm/Hyprland/issues/2321#issuecomment-1583184411
@@ -97,10 +93,6 @@ in
       # Misc
       pkgs.jq # Required for move window script
     ];
-
-    home.sessionVariables = {
-      SHELL = "zsh";
-    };
 
     # Font config
     fonts.fontconfig = {
@@ -194,7 +186,8 @@ in
 	  ) 9)
 	);
 
-        exec-once = ''${startupScript}'';
+        exec-once = ''${setupScript}'';
+	exec = ''${reloadScript}'';
 
         general = {
           gaps_in = 3;
@@ -369,13 +362,55 @@ in
       kitty = {
 	enable = true;
         themeFile = "Catppuccin-Mocha";
+
+	keybindings = {
+	  # Disable tab bindings
+          "kitty_mod+t" = "no_op";
+          "kitty_mod+q" = "no_op";
+          "kitty_mod+alt+t" = "no_op";
+
+	  # Disable window bindings
+          "kitty_mod+enter" = "no_op";
+          "kitty_mod+n" = "no_op";
+          "kitty_mod+w" = "no_op";
+          "kitty_mod+r" = "no_op";
+	};
+
+	# Disable warning on close
+	extraConfig = ''
+	  confirm_os_window_close 0
+	'';
       };
 
       tmux = {
         enable = true;
 
+	prefix = "C-space";
+
+        shell = "${pkgs.zsh}/bin/zsh";
 	extraConfig = ''
-          set-option -g status-right ''''
+          set -g status-right ""
+	  set -g repeat-time 1000
+
+	  unbind Left
+	  unbind Down
+	  unbind Up
+	  unbind Right
+
+	  unbind C-Left
+	  unbind C-Down
+	  unbind C-Up
+	  unbind C-Right
+
+	  bind h select-pane -L
+	  bind j select-pane -D
+	  bind k select-pane -U
+	  bind l select-pane -R
+
+	  bind-key -r C-h resize-pane -L 5
+	  bind-key -r C-j resize-pane -D 5
+	  bind-key -r C-k resize-pane -U 5
+	  bind-key -r C-l resize-pane -R 5
 	'';
       };
     };
