@@ -14,6 +14,8 @@
 
     autosuggestion.enable = true;
 
+    defaultKeymap = "viins";
+
     antidote = {
       enable = true;
       plugins = [
@@ -112,6 +114,9 @@
       WORDCHARS=''${WORDCHARS//-}
       WORDCHARS=''${WORDCHARS//.}
       WORDCHARS=''${WORDCHARS//\\}
+      
+      # Decrease KEYTIMEOUT so escape doesn't have delay
+      KEYTIMEOUT=1
     '';
   };
 }
