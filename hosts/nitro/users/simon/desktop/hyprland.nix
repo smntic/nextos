@@ -256,6 +256,7 @@ in
           {
             name = "syna7db5:01-06cb:cd41-touchpad";
 	    accel_profile = "adaptive";
+	    natural_scroll = true;
 	  }
 	];
 
