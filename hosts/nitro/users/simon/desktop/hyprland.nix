@@ -146,6 +146,9 @@ in
           "$mod, RETURN, exec, kitty"
           "$mod, W, exec, firefox"
 
+	  # Lock screen
+	  "CTRL ALT, l, exec, hyprlock"
+
 	  # Move focus
 	  "$mod, h, movefocus, l"
 	  "$mod, l, movefocus, r"
@@ -245,7 +248,8 @@ in
           
 	  # Global keyboard config
 	  kb_layout = "us";
-	  kb_variant = "colemak_dh";
+	  kb_variant = "";
+	  #kb_variant = "colemak_dh";
 	  kb_options = "caps:swapescape";
         };
         device = [
@@ -279,6 +283,43 @@ in
     };
 
     programs = {
+      hyprlock = {
+        enable = true;
+        
+	settings = {
+	  general = {
+            disable_loading_bar = true;
+            hide_cursor = true;
+            no_fade_in = true;
+            no_fade_out = true;
+          };
+        
+          background = [
+            {
+              path = "screenshot";
+              blur_passes = 2;
+              blur_size = 5;
+            }
+          ];
+        
+          input-field = [
+            {
+              size = "200, 50";
+              position = "0, 0";
+              monitor = "";
+              dots_center = true;
+	      dots_fade_time = 0;
+              fade_on_empty = false;
+              font_color = "rgb(202, 211, 245)";
+              inner_color = "rgb(78, 83, 153)";
+              outline_thickness = 0;
+              placeholder_text = "<span foreground=\"##cad3f5\">Enter Password...</span>";
+              fail_text = "<span foreground=\"##f22b1d\">Wrong.</span>";
+            }
+          ];
+	};
+      };
+
       waybar = {
         enable = true;
         settings.mainBar = {

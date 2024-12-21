@@ -7,6 +7,8 @@
     xwayland.enable = true;
   };
 
+  security.pam.services.hyprlock = {};
+
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 }
