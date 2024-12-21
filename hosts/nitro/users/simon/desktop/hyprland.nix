@@ -116,10 +116,6 @@ in
 	  animate_manual_resizes = true;
 	};
 
-	# Monitor settings
-	monitor = ", preferred, auto, 1";
-
-
 	# Bindings
         "$mod" = "SUPER";
 
@@ -173,18 +169,39 @@ in
 
 	  # Toggle focus between floating and tiled windows
 	  "$mod, SPACE, exec, ${toggleFloatingScript}"
-        ] ++ (
-	  # Switch workspaces
-	  builtins.concatLists (builtins.genList (i:
-	    let
-	      binding = i + 1;
-	      workspace = i + 1;  # changing for now TODO: maybe reverse...
-	    in [
-	      "$mod, ${toString binding}, workspace, ${toString workspace}"
-	      "$mod SHIFT, ${toString binding}, movetoworkspacesilent, ${toString workspace}"
-	    ]
-	  ) 9)
-	);
+
+          # Move focus between monitors
+	  "$mod CTRL, h, focusmonitor, l"
+	  "$mod CTRL, l, focusmonitor, r"
+
+	  # Move workspace between monitors
+	  "$mod CTRL SHIFT, h, movecurrentworkspacetomonitor, l"
+	  "$mod CTRL SHIFT, l, movecurrentworkspacetomonitor, r"
+
+	  # Switch workspace
+	  "$mod, 1, workspace, 10"
+	  "$mod, 2, workspace, 9"
+	  "$mod, 3, workspace, 8"
+	  "$mod, 4, workspace, 7"
+	  "$mod, 5, workspace, 6"
+	  "$mod, 6, workspace, 5"
+	  "$mod, 7, workspace, 4"
+	  "$mod, 8, workspace, 3"
+	  "$mod, 9, workspace, 2"
+	  "$mod, 0, workspace, 1"
+
+	  # Move window to workspace
+	  "$mod SHIFT, 1, movetoworkspacesilent, 10"
+	  "$mod SHIFT, 2, movetoworkspacesilent, 9"
+	  "$mod SHIFT, 3, movetoworkspacesilent, 8"
+	  "$mod SHIFT, 4, movetoworkspacesilent, 7"
+	  "$mod SHIFT, 5, movetoworkspacesilent, 6"
+	  "$mod SHIFT, 6, movetoworkspacesilent, 5"
+	  "$mod SHIFT, 7, movetoworkspacesilent, 4"
+	  "$mod SHIFT, 8, movetoworkspacesilent, 3"
+	  "$mod SHIFT, 9, movetoworkspacesilent, 2"
+	  "$mod SHIFT, 0, movetoworkspacesilent, 1"
+        ];
 
         exec-once = ''${setupScript}'';
 	exec = ''${reloadScript}'';
@@ -220,6 +237,35 @@ in
 	  "XCURSOR_THEME,capitaine-cursors"
           "XCURSOR_SIZE,16"
 	];
+
+        # Input config
+        input = {
+	  # Global mouse config
+          accel_profile = "flat";
+          
+	  # Global keyboard config
+	  kb_layout = "us";
+	  kb_variant = "colemak_dh";
+	  kb_options = "caps:swapescape";
+        };
+        device = [
+          {
+            name = "syna7db5:01-06cb:cd41-touchpad";
+	    accel_profile = "adaptive";
+	  }
+	];
+
+	# Monitor settings
+	monitor = [
+	  "eDP-1, preferred, 0x0, 1"
+	  ", preferred, auto, 1"
+	];
+	workspace = [
+          "1, monitor:eDP-1"
+	];
+	cursor = {
+          default_monitor = "eDP-1";
+	};
       };
     };
 
