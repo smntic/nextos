@@ -14,7 +14,7 @@
 
     autosuggestion.enable = true;
 
-    defaultKeymap = "viins";
+    defaultKeymap = "emacs";
 
     antidote = {
       enable = true;
@@ -114,9 +114,6 @@
       WORDCHARS=''${WORDCHARS//-}
       WORDCHARS=''${WORDCHARS//.}
       WORDCHARS=''${WORDCHARS//\\}
-      
-      # Decrease KEYTIMEOUT so escape doesn't have delay
-      KEYTIMEOUT=1
     '';
   };
 }

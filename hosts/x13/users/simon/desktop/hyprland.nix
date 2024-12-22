@@ -92,6 +92,9 @@ in
 
       # Misc
       pkgs.jq # Required for move window script
+
+      # Clipboard
+      pkgs.wl-clipboard
     ];
 
     # Font config
@@ -250,7 +253,7 @@ in
 	  kb_layout = "us";
 	  kb_variant = "";
 	  #kb_variant = "colemak_dh";
-	  kb_options = "caps:swapescape";
+	  kb_options = "caps:escape";
         };
         device = [
           {
@@ -477,6 +480,7 @@ in
 
         shell = "${pkgs.zsh}/bin/zsh";
 	extraConfig = ''
+	  set -s escape-time = 0
           set -g status-right ""
 	  set -g repeat-time 1000
 

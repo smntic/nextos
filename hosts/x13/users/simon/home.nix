@@ -4,13 +4,13 @@
   imports = [
     ./desktop/hyprland.nix
     ./shell/zsh.nix
+    ./editor/nvim.nix
   ];
 
   home = {
     packages = [
       pkgs.tree
       pkgs.git
-      pkgs.neovim
       pkgs.cowsay
     ];
 
