@@ -3,13 +3,10 @@
 let
   setupScript = pkgs.pkgs.writeShellScript "setup" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init &
+    ${pkgs.hyprpaper}/bin/hyprpaper &
   '';
-
   reloadScript = pkgs.pkgs.writeShellScript "reload" ''
-    ${pkgs.swww}/bin/swww img ${../assets/wallpapers/sakura.gif} &
   '';
-
   # https://github.com/hyprwm/Hyprland/issues/2321#issuecomment-1583184411
   moveWindowScript = pkgs.pkgs.writeShellScript "move_window" ''
     MOVE_SIZE=''${1:?Missing size}
@@ -95,6 +92,9 @@ in
 
       # Clipboard
       pkgs.wl-clipboard
+
+      # Wallpaper
+      pkgs.hyprpaper
     ];
 
     # Font config
@@ -109,6 +109,9 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
 
+      # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/
+      systemd.enable = false;
+
       settings = {
         misc = {
 	  # Disable splash screen
@@ -118,6 +121,9 @@ in
 	  # Animate events like resizeactive
 	  animate_manual_resizes = true;
 	};
+
+        exec-once = ''${setupScript}'';
+        exec = ''${reloadScript}'';
 
 	# Bindings
         "$mod" = "SUPER";
@@ -208,9 +214,6 @@ in
 	  "$mod SHIFT, 9, movetoworkspacesilent, 2"
 	  "$mod SHIFT, 0, movetoworkspacesilent, 1"
         ];
-
-        exec-once = ''${setupScript}'';
-	exec = ''${reloadScript}'';
 
         general = {
           gaps_in = 3;
@@ -504,6 +507,17 @@ in
 	  bind-key -r C-k resize-pane -U 5
 	  bind-key -r C-l resize-pane -R 5
 	'';
+      };
+    };
+
+    services = {
+      hyprpaper = {
+        enable = true;
+
+        settings = {
+          preload = [ "${../assets/wallpapers/forest.png}" ];
+          wallpaper = [ ",${../assets/wallpapers/forest.png}" ];
+	};
       };
     };
   }
