@@ -17,14 +17,9 @@
   ssh.server = true;
   ssh.allowPassword = true;
   ssh.allowRoot = true;
-  
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  networking.hostName = "x13";
+  time.timeZone = "America/Vancouver";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -40,9 +35,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
