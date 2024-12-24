@@ -1,10 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     ./desktop/hyprland.nix
     ./shell/zsh.nix
     ./editor/nvim.nix
+    ./stylix.nix
+
+    inputs.stylix.homeManagerModules.stylix
   ];
 
   home = {

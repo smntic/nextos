@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.stylix.homeManagerModules.stylix
+  ];
+
   home = {
     packages = [
       pkgs.neofetch

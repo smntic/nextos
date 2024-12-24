@@ -9,9 +9,12 @@
 
     # Desktops
     hyprland.url = "github:hyprwm/Hyprland";
+
+    # Stylix
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
     let
       file = import ./lib/helpers/file.nix;
     in
@@ -27,11 +30,12 @@
               modules = [
 		./core/configuration.nix
 	        ./hosts/${hostName}/configuration.nix
-
+                
                 home-manager.nixosModules.home-manager {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                 }
+
 	      ] ++ file.listForFile ./hosts/${hostName}/users (userName:
 	          ./hosts/${hostName}/users/${userName}/user.nix);
             };

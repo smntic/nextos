@@ -1,4 +1,4 @@
-{ pkgs, root, ... }:
+{ pkgs, root, inputs, ... }:
 
 {
   imports = [
@@ -11,5 +11,5 @@
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
-  home-manager.users.simon = import ./home.nix { inherit pkgs; };
+  home-manager.users.simon = import ./home.nix { inherit pkgs inputs; };
 }

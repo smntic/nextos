@@ -17,7 +17,7 @@
   ssh.server = true;
   ssh.allowPassword = true;
   ssh.allowRoot = true;
-
+  
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
