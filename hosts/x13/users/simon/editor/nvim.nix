@@ -174,7 +174,8 @@ let
         local filename = vim.fn.expand('%:p')
         local output_filename = vim.fn.expand('%:p:r')
         local command = string.format(
-          'g++ -DLOCAL -include /usr/include/c++/13.2/x86_64-unknown-linux-gnu/bits/stdc++.h -Wall -Wextra "%s" -o "%s"',
+          -- 'g++ -DLOCAL -include /usr/include/c++/13.2/x86_64-unknown-linux-gnu/bits/stdc++.h -Wall -Wextra "%s" -o "%s"',
+          'g++ -DLOCAL -Wall -Wextra "%s" -o "%s"',
           filename,
           output_filename
         )
@@ -428,6 +429,9 @@ in
       pkgs.clang-tools
       pkgs.stylua
       pkgs.black
+
+      # Build tools
+      pkgs.gcc
     ];
 
     programs.neovim = {
