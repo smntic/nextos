@@ -250,7 +250,7 @@ in
         };
         device = [
           {
-            name = "syna7db5:01-06cb:cd41-touchpad";
+            name = "elan06c2:00-04f3:3195-touchpad";
             accel_profile = "adaptive";
             natural_scroll = true;
           }
