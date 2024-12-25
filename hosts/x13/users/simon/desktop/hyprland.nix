@@ -93,7 +93,7 @@ in
       # Screenshot tool
       pkgs.hyprshot
 
-      # Bluetooth Management
+      # Bluetooth management
       pkgs.bluetui
     ];
 
@@ -546,6 +546,18 @@ in
           bind-key -r C-k resize-pane -U 5
           bind-key -r C-l resize-pane -R 5
         '';
+      };
+
+      yazi = {
+        enable = true;
+	enableZshIntegration = true;
+
+	theme = {
+          status = {
+            separator_open = "";
+            separator_close = "";
+	  };
+	};
       };
     };
 

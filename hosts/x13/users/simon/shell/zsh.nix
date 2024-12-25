@@ -63,10 +63,17 @@
 	zle redisplay
       }
 
+      # Quick run yazi function
+      run-yazi-widget() {
+        yazi <>$TTY
+	zle redisplay
+      }
+
       # Create the widgets
       zle -N fzf-auto-history-widget
       zle -N fzf-auto-file-widget
       zle -N run-tmux-widget
+      zle -N run-yazi-widget
 
       # fzf cd bindings
       bindkey '^F' fzf-cd-widget
@@ -81,6 +88,7 @@
 
       # Quick program bindings
       bindkey '^[[116;6u' run-tmux-widget
+      bindkey '^[[121;6u' run-yazi-widget
 
       # Delete forward
       bindkey '\e[3~' delete-char
