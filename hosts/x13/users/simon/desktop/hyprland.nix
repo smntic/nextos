@@ -73,9 +73,6 @@ in
 
       # Browser
       pkgs.firefox
-  
-      # Launcher
-      pkgs.rofi-wayland
 
       # Brightness control
       pkgs.brightnessctl
@@ -256,11 +253,6 @@ in
           kb_variant = "";
           #kb_variant = "colemak_dh";
           kb_options = "caps:escape";
-
-	  # Global touchpad config
-	  touchpad = {
-            scroll_factor = 0.6;
-	  };
         };
         device = [
           {
@@ -438,6 +430,67 @@ in
         '';
       };
 
+      rofi = let
+        inherit (config.lib.formats.rasi) mkLiteral;
+      in {
+        enable = true;
+
+	extraConfig = {
+	  modi = "drun,run";
+          show-icons = true;
+	  fuzzy = true;
+          terminal = "kitty";
+
+	  # https://www.reddit.com/r/qtools/comments/kaiaa8/comment/i4ifgyf
+          kb-row-up = "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+          kb-row-down = "Down,Control+j";
+          kb-accept-entry = "Control+m,Return,KP_Enter";
+          kb-remove-to-eol = "Control+Shift+e";
+          kb-mode-next = "Shift+Right,Control+Tab,Control+l";
+          kb-mode-previous = "Shift+Left,Control+Shift+Tab,Control+h";
+          kb-remove-char-back = "BackSpace";
+	  kb-cancel = "Escape,Control+c";
+	  kb-mode-complete = ""; # Otherwise bound to Control+l
+	};
+
+	theme = {
+          "*" = {
+            width = 512;
+	  };
+
+	  window = {
+            border = mkLiteral "1px";
+	    border-color = mkLiteral config.lib.stylix.colors.withHashtag.base0D;
+	  };
+          
+	  inputbar = {
+            padding = mkLiteral "5px";
+            spacing = mkLiteral "5px";
+	  };
+
+	  prompt = {
+            font = "monospace 14px";
+	  };
+
+	  entry = {
+            font = "monospace 14px";
+	  };
+	
+	  listview = {
+            lines = 10;
+	  };
+
+          element = {
+            padding = mkLiteral "5px";
+            spacing = mkLiteral "10px";
+	  };
+
+	  element-text = {
+            font = "monospace 14px";
+	  };
+	};
+      };
+
       kitty = {
         enable = true;
 
@@ -467,9 +520,11 @@ in
 
         shell = "${pkgs.zsh}/bin/zsh";
         extraConfig = ''
-          set -s escape-time = 0
+          set -s escape-time 0
           set -g status-right ""
           set -g repeat-time 1000
+          set -g default-terminal "screen-256color"
+          set -as terminal-features ",xterm-256color:RGB"
 
           unbind Left
           unbind Down
