@@ -11,8 +11,8 @@
       "${root}/modules/server/ssh.nix"
       "${root}/modules/server/ssh.nix"
       "${root}/modules/audio/pipewire.nix"
-      #"${root}/modules/printing/cups.nix"
-      ../../modules/printing/cups.nix
+      "${root}/modules/printing/cups.nix"
+      "${root}/modules/audio/bluetooth.nix"
       ./hardware-configuration.nix
     ];
 

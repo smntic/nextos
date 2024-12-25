@@ -95,6 +95,9 @@ in
 
       # Screenshot tool
       pkgs.hyprshot
+
+      # Bluetooth Management
+      pkgs.bluetui
     ];
 
     wayland.windowManager.hyprland = {
