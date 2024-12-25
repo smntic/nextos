@@ -92,6 +92,9 @@ in
 
       # Wallpaper
       pkgs.hyprpaper
+
+      # Screenshot tool
+      pkgs.hyprshot
     ];
 
     wayland.windowManager.hyprland = {
@@ -201,6 +204,9 @@ in
           "$mod SHIFT, 8, movetoworkspacesilent, 3"
           "$mod SHIFT, 9, movetoworkspacesilent, 2"
           "$mod SHIFT, 0, movetoworkspacesilent, 1"
+
+          # Take screenshot
+	  "$mod, Print, exec, hyprshot --clipboard-only -m region"
         ];
 
         general = {
