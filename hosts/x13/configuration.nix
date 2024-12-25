@@ -11,6 +11,8 @@
       "${root}/modules/server/ssh.nix"
       "${root}/modules/server/ssh.nix"
       "${root}/modules/audio/pipewire.nix"
+      #"${root}/modules/printing/cups.nix"
+      ../../modules/printing/cups.nix
       ./hardware-configuration.nix
     ];
 
@@ -20,6 +22,8 @@
 
   networking.hostName = "x13";
   time.timeZone = "America/Vancouver";
+
+  cups.drivers = [ pkgs.hplip ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
