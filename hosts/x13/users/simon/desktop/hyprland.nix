@@ -253,6 +253,11 @@ in
           kb_variant = "";
           #kb_variant = "colemak_dh";
           kb_options = "caps:escape";
+
+	  # Global touchpad config
+	  touchpad = {
+            scroll_factor = 0.6;
+	  };
         };
         device = [
           {
