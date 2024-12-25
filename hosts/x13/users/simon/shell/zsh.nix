@@ -47,14 +47,12 @@
 
       # fzf widget to automatically run history item after accepting
       fzf-auto-history-widget() {
-        fzf-history-widget
-	zle accept-line
+        fzf-history-widget && zle accept-line
       }
 
       # fzf widget to automatically run command with file after accepting
       fzf-auto-file-widget() {
-        fzf-file-widget
-	zle accept-line
+        fzf-file-widget && zle accept-line
       }
 
       # Quick run tmux function
@@ -88,7 +86,7 @@
 
       # Quick program bindings
       bindkey '^[[116;6u' run-tmux-widget
-      bindkey '^[[121;6u' run-yazi-widget
+      bindkey '^[f' run-yazi-widget
 
       # Delete forward
       bindkey '\e[3~' delete-char
