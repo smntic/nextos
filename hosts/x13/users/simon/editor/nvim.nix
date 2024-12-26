@@ -153,7 +153,10 @@ let
     vim.keymap.set('n', '<leader>J', '<cmd>lprev<CR>zz', { desc = 'General | Quickfix prev in window', silent = true })
 
     -- netrw
-    vim.keymap.set('n', '<leader>nf', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw', silent = true })
+    vim.keymap.set('n', '<A-f>', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw', silent = true })
+
+    -- Toggle terminal
+    vim.keymap.set('n', '<A-t>', '<cmd>ToggleTerm<CR>', { desc = 'General | Toggle Terminal', silent = true })
   '';
   make = ''
     -- This could technically be it's own plugin
@@ -248,8 +251,8 @@ let
       end
     end
     
-    vim.keymap.set('n', '<leader>b', build_program, { desc = 'Make | Build Program', silent = true })
-    vim.keymap.set('n', '<leader>r', run_program, { desc = 'Make | Run Program', silent = true })
+    vim.keymap.set('n', '<A-b>', build_program, { desc = 'Make | Build Program', silent = true })
+    vim.keymap.set('n', '<A-r>', run_program, { desc = 'Make | Run Program', silent = true })
   '';
   lsp = ''
     local conform = require('conform')
@@ -415,7 +418,11 @@ let
     local blankline = require('ibl')
     blankline.setup()
   '';
-  plugins = lsp + whichKey + telescope + fugitive + harpoon + undotree + markdown-preview + toggleterm + blankline;
+  autopairs = ''
+    local autopairs = require('nvim-autopairs')
+    autopairs.setup()
+  '';
+  plugins = lsp + whichKey + telescope + fugitive + harpoon + undotree + markdown-preview + toggleterm + blankline + autopairs;
   luaConfig = options + mappings + make + plugins;
 in
   {
@@ -457,6 +464,7 @@ in
        	comment-nvim
         indent-blankline-nvim
         toggleterm-nvim
+	nvim-autopairs
 
         # LSP
         nvim-lspconfig
