@@ -6,6 +6,7 @@
     ./shell/zsh.nix
     ./editor/nvim.nix
     ./stylix.nix
+    ./python/python.nix
 
     inputs.stylix.homeManagerModules.stylix
   ];
