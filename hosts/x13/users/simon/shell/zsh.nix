@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.fzf
+    pkgs.thefuck
   ];
 
   home.sessionVariables = {
@@ -41,6 +42,9 @@
     initExtra = ''
       source <(fzf --zsh)
       source ${./p10k.zsh}
+
+      # Configure thefuck alias
+      eval ''$(thefuck --alias)
 
       # Fix for suggestion font color in tmux (https://github.com/zsh-users/zsh-autosuggestions/issues/229)
       export TERM=xterm-256color
