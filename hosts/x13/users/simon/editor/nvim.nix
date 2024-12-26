@@ -17,7 +17,6 @@ let
       clipboard = "unnamedplus",
 
       -- Friendship ended with tabs. Now spaces are my best friend.
-      smartindent = true,
       expandtab = true,
       shiftwidth = 4,
       tabstop = 4,
