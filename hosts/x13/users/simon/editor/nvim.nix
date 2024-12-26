@@ -422,7 +422,11 @@ let
     local autopairs = require('nvim-autopairs')
     autopairs.setup()
   '';
-  plugins = lsp + whichKey + telescope + fugitive + harpoon + undotree + markdown-preview + toggleterm + blankline + autopairs;
+  comment = ''
+    local comment = require('Comment')
+    comment.setup()
+  '';
+  plugins = lsp + whichKey + telescope + fugitive + harpoon + undotree + markdown-preview + toggleterm + blankline + autopairs + comment;
   luaConfig = options + mappings + make + plugins;
 in
   {
