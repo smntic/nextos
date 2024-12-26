@@ -125,5 +125,9 @@
       WORDCHARS=''${WORDCHARS//.}
       WORDCHARS=''${WORDCHARS//\\}
     '';
+
+    envExtra = ''
+      export CPP_TEMPLATE=${../cp/cpp_template.cpp}
+    '';
   };
 }
