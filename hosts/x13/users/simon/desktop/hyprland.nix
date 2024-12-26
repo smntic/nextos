@@ -4,6 +4,7 @@ let
   setupScript = pkgs.pkgs.writeShellScript "setup" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.hyprpaper}/bin/hyprpaper &
+    ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular &
   '';
   reloadScript = pkgs.pkgs.writeShellScript "reload" ''
   '';
@@ -81,9 +82,6 @@ in
       pkgs.nerd-fonts.symbols-only
       pkgs.dejavu_fonts
 
-      # Misc
-      pkgs.jq # Required for move window script
-
       # Clipboard
       pkgs.wl-clipboard
 
@@ -95,6 +93,13 @@ in
 
       # Bluetooth management
       pkgs.bluetui
+
+      # Emoji selection
+      pkgs.rofimoji
+
+      # Misc
+      pkgs.jq         # Required for move window script
+      pkgs.wl-clip-persist # Keeps clipboard even after programs close
     ];
 
     wayland.windowManager.hyprland = {
@@ -207,6 +212,9 @@ in
 
           # Take screenshot
 	  "$mod, Print, exec, hyprshot --clipboard-only -m region"
+
+	  # Emoji selection
+	  "$mod, period, exec, rofimoji --max-recent 0"
         ];
 
         general = {
