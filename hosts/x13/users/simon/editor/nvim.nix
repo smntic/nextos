@@ -32,7 +32,6 @@ let
       smartcase = true,
 
       -- Searching
-      hlsearch = false,
       incsearch = true,
 
       -- Column
@@ -87,9 +86,17 @@ let
     -- Inverse tab
     vim.keymap.set('i', '<S-Tab>', '<C-d>', { desc = 'General | Inverse tab', silent = true })
 
-    -- Move text in visual mode
-    vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'General | Move the selected text down', silent = true })
-    vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'General | Move the selected text up', silent = true })
+    -- Move text down in visual mode
+    vim.keymap.set('v', 'J', function()
+      local count = vim.v.count == 0 and 1 or vim.v.count
+      return ":m '>+" .. count .. "<CR>gv=gv"
+    end, { desc = 'General | Move the selected text down', silent = true, expr = true } );
+
+    -- Move text up in visual mode
+    vim.keymap.set('v', 'K', function()
+      local count = (vim.v.count == 0 and 1 or vim.v.count) + 1
+      return ":m '<-" .. count .. "<CR>gv=gv"
+    end, { desc = 'General | Move the selected text up', silent = true, expr = true } );
 
     -- Keep cursor in the same place when using `J`
     vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'General | Better J', silent = true })
