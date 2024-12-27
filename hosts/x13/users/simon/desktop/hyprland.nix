@@ -574,8 +574,8 @@ in
         enable = true;
 
         settings = {
-          preload = [ "${../assets/wallpapers/forest.png}" ];
-          wallpaper = [ ",${../assets/wallpapers/forest.png}" ];
+          preload = [ "${config.stylix.image}" ];
+          wallpaper = [ ",${config.stylix.image}" ];
         };
       };
     };

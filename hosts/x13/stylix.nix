@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
+  environment.systemPackages = [
     pkgs.capitaine-cursors
   ];
 
@@ -36,6 +36,20 @@
     cursor = {
       name = "capitaine-cursors";
       size = 16;
+    };
+
+    fonts = {
+      sizes = {
+        applications = 11;
+	desktop = 10;
+	popups = 10;
+	terminal = 11;
+      };
+    };
+
+    targets = {
+      console.enable = false;
+      grub.enable = false;
     };
   };
 }

@@ -1,10 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-  imports = [
-    inputs.stylix.homeManagerModules.stylix
-  ];
-
   programs.git = {
     enable = true;
 

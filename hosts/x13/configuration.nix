@@ -13,7 +13,11 @@
       "${root}/modules/audio/pipewire.nix"
       "${root}/modules/printing/cups.nix"
       "${root}/modules/audio/bluetooth.nix"
+      "${root}/modules/images/krita.nix"
       ./hardware-configuration.nix
+
+      ./stylix.nix
+      inputs.stylix.nixosModules.stylix
     ];
 
   ssh.server = true;
