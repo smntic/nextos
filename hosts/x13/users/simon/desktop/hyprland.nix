@@ -127,6 +127,18 @@ in
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
+          # Move window
+          "$mod SHIFT, h, exec, ${moveWindowScript} 100 l move"
+          "$mod SHIFT, j, exec, ${moveWindowScript} 100 d move"
+          "$mod SHIFT, k, exec, ${moveWindowScript} 100 u move"
+          "$mod SHIFT, l, exec, ${moveWindowScript} 100 r move"
+
+          # Resize window
+          "$mod ALT, h, exec, ${moveWindowScript} 100 l resize"
+          "$mod ALT, j, exec, ${moveWindowScript} 100 d resize"
+          "$mod ALT, k, exec, ${moveWindowScript} 100 u resize"
+          "$mod ALT, l, exec, ${moveWindowScript} 100 r resize"
         ];
 
         bindm = [
@@ -156,18 +168,6 @@ in
           "$mod, k, movefocus, u"
           "$mod, j, movefocus, d"
 
-          # Move window
-          "$mod SHIFT, h, exec, ${moveWindowScript} 100 l move"
-          "$mod SHIFT, j, exec, ${moveWindowScript} 100 d move"
-          "$mod SHIFT, k, exec, ${moveWindowScript} 100 u move"
-          "$mod SHIFT, l, exec, ${moveWindowScript} 100 r move"
-
-          # Resize window
-          "$mod ALT, h, exec, ${moveWindowScript} 100 l resize"
-          "$mod ALT, j, exec, ${moveWindowScript} 100 d resize"
-          "$mod ALT, k, exec, ${moveWindowScript} 100 u resize"
-          "$mod ALT, l, exec, ${moveWindowScript} 100 r resize"
-          
           # Toggle window floating
           "$mod SHIFT, SPACE, togglefloating"
 
@@ -262,6 +262,8 @@ in
           kb_variant = "";
           #kb_variant = "colemak_dh";
           kb_options = "caps:escape";
+	  repeat_rate = 30;
+	  repeat_delay = 300; 
         };
         device = [
           {
