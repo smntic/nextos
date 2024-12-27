@@ -1,11 +1,11 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   setupScript = pkgs.pkgs.writeShellScript "setup" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.hyprpaper}/bin/hyprpaper &
-    ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular &
   '';
+    # ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular &
   reloadScript = pkgs.pkgs.writeShellScript "reload" ''
   '';
   # https://github.com/hyprwm/Hyprland/issues/2321#issuecomment-1583184411
@@ -67,13 +67,9 @@ in
   
       # Bar
       pkgs.waybar
-  
-      # Notifications
-      pkgs.mako
-      pkgs.libnotify
 
-      # Browser
-      pkgs.firefox
+      # Notifications
+      pkgs.libnotify
 
       # Brightness control
       pkgs.brightnessctl
@@ -255,6 +251,11 @@ in
         input = {
           # Global mouse config
           accel_profile = "flat";
+
+	  # Global touchpad config
+          touchpad = {
+            scroll_factor = 0.3;
+	  };
           
           # Global keyboard config
           kb_layout = "us";
@@ -416,6 +417,10 @@ in
             background: alpha(@base05, 0.2);
           }
 
+	  #workspaces button.urgent {
+	    background: alpha(@base08, 0.3);
+	  }
+
           .modules-right label.module {
             margin-right: 0.5em;
           }
@@ -429,7 +434,7 @@ in
           }
 
           #wireplumber.muted {
-            color: @base0C;
+            color: @base09;
           }
 
           #custom-separator {
@@ -518,6 +523,7 @@ in
         # Disable warning on close
         extraConfig = ''
           confirm_os_window_close 0
+	  enable_audio_bell no
         '';
       };
 
@@ -567,6 +573,78 @@ in
 	  };
 	};
       };
+
+      # Dear firefox, fuck you kindly.
+      firefox = 
+        let
+	  lock = value: {
+	    Value = value;
+	    Status = "locked";
+	  };
+	in
+	  {
+            enable = true;
+
+	    policies = {
+              AppAutoUpdate = false;
+	      BackgroundAppUpdate = false;
+	      DisableFirefoxAccounts = true;
+	      DisableFirefoxStudies = true;
+	      DisableHardwareAcceleration = true;
+	      DisableSetDesktopBackground = true;
+	      DisablePrivateBrowsing = true;
+	      DisablePocket = true;
+	      DisableTelemetry = true;
+	      DisableFormHistory = true;
+	      DisablePasswordReveal = true;
+	      DisplayBookmarksToolbar = "never";
+	      DontCheckDefaultBrowser = true;
+	      ExtensionUpdate = false;
+	      FirefoxSuggest = false;
+	      OfferToSaveLogins = false;
+              SearchSuggestEnabled = false;
+
+	      Preferences = {
+                "browser.urlbar.suggest.topsites" = lock false;
+                "browser.topsites.contile.enabled" = lock false;
+		"browser.newtabpage.activity-stream.feeds.snippets" = lock false;
+		"browser.newtabpage.activity-stream.feeds.topsites" = lock false;
+		"browser.newtabpage.activity-stream.showSponsored" = lock false;
+		"browser.newtabpage.activity-stream.system.showSponsored" = lock false;
+		"browser.newtabpage.activity-stream.showSponsoredTopSites" = lock false;
+		"browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = lock false;
+		"browser.uiCustomization.state" = lock "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\",\"ublock0_raymondhill_net-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"developer-button\",\"ublock0_raymondhill_net-browser-action\",\"_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"vertical-tabs\",\"unified-extensions-area\",\"PersonalToolbar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":20,\"newElementCount\":2}";
+	      };
+
+	      ExtensionSettings =
+                let
+		  extension = shortId: uuid: {
+                    name = uuid;
+	    	    value = {
+                      install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+	    	      installation_mode = "normal_installed";
+	    	    };
+	          };
+	        in
+	          builtins.listToAttrs [
+                    (extension "ublock-origin" "uBlock0@raymondhill.net")
+                    (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+                    (extension "darkreader" "addon@darkreader.org")
+                    (extension "600-sound-volume" "{c4b582ec-4343-438c-bda2-2f691c16c262}")
+                    (extension "youtube-recommended-videos" "myallychou@gmail.com")
+	          ];
+	    };
+
+	    profiles.default = {
+	      id = 0;
+	      name = "default";
+	      isDefault = true;
+
+	      settings = {
+                "browser.startup.homepage" = "about:newtab";
+	      };
+	    };
+          };
     };
 
     services = {
@@ -577,6 +655,11 @@ in
           preload = [ "${config.stylix.image}" ];
           wallpaper = [ ",${config.stylix.image}" ];
         };
+      };
+
+      mako = {
+        enable = true;
+	defaultTimeout = 3000;
       };
     };
   }

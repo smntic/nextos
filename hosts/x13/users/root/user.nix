@@ -1,9 +1,9 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, ... }@args:
 
 {
   users.users.root = {
     isSystemUser = true;
   };
 
-  home-manager.users.root = import ./home.nix { inherit pkgs inputs; };
+  home-manager.users.root = import ./home.nix args;
 }
