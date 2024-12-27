@@ -6,6 +6,8 @@
     ./shell/zsh.nix
     ./editor/nvim.nix
     ./python/python.nix
+
+    ./xdg.nix
   ];
 
   home = {
