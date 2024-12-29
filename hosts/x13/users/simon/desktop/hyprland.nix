@@ -212,6 +212,10 @@ in
 
 	  # Emoji selection
 	  "$mod, period, exec, rofimoji --max-recent 0"
+
+	  # Notification selection
+	  "$mod, n, exec, makoctl invoke"
+	  "$mod SHIFT, n, exec, makoctl history | jq -r '.data.[] | to_entries[] | \"\\(.key) \\(.value.summary.data)\"' | rofi -dmenu | cut -f 1 -d ' ' | xargs -I {} makoctl invoke -n {}"
         ];
 
         general = {
@@ -635,6 +639,7 @@ in
                     (extension "darkreader" "addon@darkreader.org")
                     (extension "600-sound-volume" "{c4b582ec-4343-438c-bda2-2f691c16c262}")
                     (extension "youtube-recommended-videos" "myallychou@gmail.com")
+                    (extension "detach-tab" "claymont@mail.com_detach-tab")
 	          ];
 	    };
 
@@ -658,6 +663,30 @@ in
           preload = [ "${config.stylix.image}" ];
           wallpaper = [ ",${config.stylix.image}" ];
         };
+      };
+
+      hypridle = {
+        enable = true;
+
+	settings = {
+	  general = {
+	    after_sleep_cmd = "hyprctl dispatch dpms on";
+	    before_sleep_cmd = "loginctl lock-session";
+            lock_cmd = "pidof hyprlock || hyprlock";
+	  };
+
+	  listener = [
+            {
+	      timeout = 300;
+	      on-timeout = "hyprctl dispatch dpms off";
+	      on-resume = "hyprctl dispatch dpms on";
+	    }
+	    {
+	      timeout = 600;
+	      on-timeout = "loginctl lock-session";
+	    }
+	  ];
+	};
       };
 
       mako = {
