@@ -4,8 +4,9 @@ let
   setupScript = pkgs.pkgs.writeShellScript "setup" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.hyprpaper}/bin/hyprpaper &
+    ${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store &
+    ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular &
   '';
-    # ${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard regular &
   reloadScript = pkgs.pkgs.writeShellScript "reload" ''
   '';
   # https://github.com/hyprwm/Hyprland/issues/2321#issuecomment-1583184411
@@ -90,7 +91,8 @@ in
       pkgs.rofimoji
 
       # Misc
-      pkgs.jq         # Required for move window script
+      pkgs.jq              # Required for move window script
+      pkgs.cliphist        # Clipboard manager
       pkgs.wl-clip-persist # Keeps clipboard even after programs close
     ];
 
@@ -204,6 +206,9 @@ in
 
           # Take screenshot
 	  "$mod, Print, exec, hyprshot --clipboard-only -m region"
+
+	  # Clipboard selection (cliphist)
+          "$mod, comma, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
 	  # Emoji selection
 	  "$mod, period, exec, rofimoji --max-recent 0"
