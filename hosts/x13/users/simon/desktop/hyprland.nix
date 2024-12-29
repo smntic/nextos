@@ -74,10 +74,6 @@ in
       # Brightness control
       pkgs.brightnessctl
 
-      # Fonts
-      pkgs.nerd-fonts.symbols-only
-      pkgs.dejavu_fonts
-
       # Clipboard
       pkgs.wl-clipboard
 

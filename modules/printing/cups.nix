@@ -2,6 +2,7 @@
 
 {
   options = {
+    cups.enable = lib.mkEnableOption "cups";
     cups.drivers = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       default = [];
@@ -9,8 +10,8 @@
     };
   };
 
-  # https://nixos.wiki/wiki/Printing
-  config = {
+  config = lib.mkIf config.cups.enable {
+    # https://nixos.wiki/wiki/Printing
     services = {
       printing = {
         enable = true;

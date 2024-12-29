@@ -12,8 +12,8 @@
     # Desktops
     hyprland.url = "github:hyprwm/Hyprland";
 
-    # Stylix
-    stylix.url = "github:danth/stylix";
+    # Stylix (temporarily switching to my fork for KDE/QT support)
+    stylix.url = "github:smnast/stylix";
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
@@ -24,23 +24,33 @@
         nixosConfigurations = file.setForFile ./hosts (hostName:
 	  {
             name = hostName;
-            value = nixpkgs.lib.nixosSystem {
-              specialArgs = {
-	        inherit inputs;
-		root = self;
+            value = let
+              hardwareFile = ./hosts/${hostName}/hardware-configuration.nix;
+              systemRegex = ".*nixpkgs\\.hostPlatform = lib.mkDefault \"([^\"]*)\".*";
+	      system = builtins.elemAt (file.matchInFile hardwareFile systemRegex) 0;
+	      pkgs = import nixpkgs {
+                system = system;
+		config.allowUnfree = true;
 	      };
-              modules = [
-		./core/configuration.nix
-	        ./hosts/${hostName}/configuration.nix
-                
-                home-manager.nixosModules.home-manager {
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                }
+            in
+	      nixpkgs.lib.nixosSystem {
+                specialArgs = {
+	          inherit inputs;
+	          pkgs = pkgs;
+	          root = self;
+	        };
+                modules = [
+	          ./core/configuration.nix
+	          ./hosts/${hostName}/configuration.nix
+                  
+                  home-manager.nixosModules.home-manager {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                  }
 
-	      ] ++ file.listForFile ./hosts/${hostName}/users (userName:
-	          ./hosts/${hostName}/users/${userName}/user.nix);
-            };
+	        ] ++ file.listForFile ./hosts/${hostName}/users (userName:
+	            ./hosts/${hostName}/users/${userName}/user.nix);
+              };
 	  });
       };
 }

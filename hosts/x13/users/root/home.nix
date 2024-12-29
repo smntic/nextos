@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ ... }:
 
 {
   programs.git = {
@@ -9,12 +9,6 @@
   };
 
   home = {
-    packages = [
-      pkgs.tree
-      pkgs.git
-      pkgs.neovim
-    ];
- 
     stateVersion = "24.11";
   };
 }

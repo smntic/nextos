@@ -1,10 +1,16 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
+  options = {
+    bluetooth.enable = lib.mkEnableOption "bluetooth";
+  };
+
+  config = lib.mkIf config.bluetooth.enable {
+    hardware = {
+      bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+      };
     };
   };
 }

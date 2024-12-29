@@ -5,6 +5,10 @@
     pkgs.capitaine-cursors
   ];
 
+  fonts.packages = [
+    pkgs.nerd-fonts.symbols-only
+  ];
+
   stylix = {
     enable = true;
 

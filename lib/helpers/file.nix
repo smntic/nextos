@@ -8,5 +8,8 @@ rec {
       builtins.map fileFunction sourceNames;
 
   setForFile = directory: fileFunction:
-      builtins.listToAttrs (listForFile directory fileFunction);
+    builtins.listToAttrs (listForFile directory fileFunction);
+
+  matchInFile = fileName: regex:
+    builtins.match regex (builtins.readFile fileName);
 }

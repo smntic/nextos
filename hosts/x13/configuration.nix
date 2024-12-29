@@ -1,28 +1,17 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+# "Help is available" - NixOS
 
-{ config, lib, pkgs, inputs, root, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  imports =
-    [
-      "${root}/modules/bootloader/grub.nix"
-      "${root}/modules/server/ssh.nix"
-      "${root}/modules/server/ssh.nix"
-      "${root}/modules/audio/pipewire.nix"
-      "${root}/modules/printing/cups.nix"
-      "${root}/modules/audio/bluetooth.nix"
-      "${root}/modules/images/krita.nix"
-      ./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
+    ./stylix.nix
+    inputs.stylix.nixosModules.stylix
+  ];
 
-      ./stylix.nix
-      inputs.stylix.nixosModules.stylix
-    ];
-
-  ssh.server = true;
-  ssh.allowPassword = true;
-  ssh.allowRoot = true;
+  # TODO: remove. these are only for testing purposes.
+  ssh.allowPassword = false;
+  ssh.allowRoot = false;
 
   networking.hostName = "x13";
   time.timeZone = "America/Vancouver";

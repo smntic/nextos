@@ -2,7 +2,28 @@
 
 {
   imports = [
-    "${root}/modules/network/networkmanager.nix"
+    "${root}/modules/android.nix"
+    "${root}/modules/audio.nix"
+    "${root}/modules/bootloader.nix"
+    "${root}/modules/browsers.nix"
+    "${root}/modules/build_tools.nix"
+    "${root}/modules/compression.nix"
+    "${root}/modules/debugging.nix"
+    "${root}/modules/desktop.nix"
+    "${root}/modules/documents.nix"
+    "${root}/modules/editors.nix"
+    "${root}/modules/game_development.nix"
+    "${root}/modules/images.nix"
+    "${root}/modules/languages.nix"
+    "${root}/modules/libraries.nix"
+    "${root}/modules/network.nix"
+    "${root}/modules/printing.nix"
+    "${root}/modules/reverse_engineering.nix"
+    "${root}/modules/server.nix"
+    "${root}/modules/system_information.nix"
+    "${root}/modules/system_tools.nix"
+    "${root}/modules/videos.nix"
+    "${root}/modules/virtualization.nix"
   ];
 
   nix.settings.experimental-features = "nix-command flakes";

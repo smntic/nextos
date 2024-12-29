@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -11,12 +11,6 @@
   ];
 
   home = {
-    packages = [
-      pkgs.tree
-      pkgs.git
-      pkgs.cowsay
-    ];
-
     shellAliases = {
       hypr = "Hyprland";
       hyprexit = "hyprctl dispatch exit";

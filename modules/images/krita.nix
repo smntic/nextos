@@ -1,7 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  environment.systemPackages = [
-    pkgs.krita
-  ];
+  options = {
+    krita.enable = lib.mkEnableOption "krita";
+  };
+
+  config = lib.mkIf config.krita.enable {
+    environment.systemPackages = [
+      pkgs.krita
+    ];
+  };
 }
