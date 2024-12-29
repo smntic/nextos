@@ -9,10 +9,6 @@
     inputs.stylix.nixosModules.stylix
   ];
 
-  # TODO: remove. these are only for testing purposes.
-  ssh.allowPassword = false;
-  ssh.allowRoot = false;
-
   networking.hostName = "x13";
   time.timeZone = "America/Vancouver";
 

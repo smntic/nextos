@@ -14,6 +14,10 @@
     shellAliases = {
       hypr = "uwsm start -S hyprland-uwsm.desktop";
       hyprexit = "uwsm stop";
+
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#x13";
+      update = "sudo sh -c 'nix flake update --flake /etc/nixos && nixos-rebuild switch --flake /etc/nixos#x13'";
+      garbage = "sudo nix-collect-garbage -d --delete-older-than 14d";
     };
 
     stateVersion = "24.11";
