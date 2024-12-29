@@ -100,7 +100,7 @@ in
       enable = true;
 
       # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/
-      systemd.enable = false;
+      # systemd.enable = false;
 
       settings = {
         misc = {

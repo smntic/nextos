@@ -6,7 +6,7 @@
     pkgs.thefuck
   ];
 
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 

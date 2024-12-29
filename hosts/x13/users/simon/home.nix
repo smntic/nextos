@@ -12,8 +12,8 @@
 
   home = {
     shellAliases = {
-      hypr = "Hyprland";
-      hyprexit = "hyprctl dispatch exit";
+      hypr = "uwsm start -S hyprland-uwsm.desktop";
+      hyprexit = "uwsm stop";
     };
 
     stateVersion = "24.11";

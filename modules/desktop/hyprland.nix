@@ -3,6 +3,7 @@
 {
   options = {
     hyprland.enable = lib.mkEnableOption "hyprland";
+    hyprland.withUWSM = lib.mkEnableOption "UWSM for Hyprland";
   };
 
   config = lib.mkIf config.hyprland.enable {
@@ -12,7 +13,11 @@
       xwayland.enable = true;
 
       # https://wiki.hyprland.org/Useful-Utilities/Systemd-start/
-      withUWSM = true;
+      withUWSM = config.hyprland.withUWSM;
+    };
+   
+    programs.uwsm = lib.mkIf config.hyprland.withUWSM {
+      enable = true;
     };
 
     security.pam.services.hyprlock = {};
