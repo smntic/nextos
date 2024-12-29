@@ -49,10 +49,10 @@ let
       -- Wrapping (not nice)
       wrap = false,
 
-      -- How many columns in the buffer before horizontal scrolling is enabled
+      -- How many columns beside the cursor vertically in view
       scrolloff = 8,
 
-      -- How many columns on the right of the cursor
+      -- How many columns beside the cursor horizontally in view
       sidescrolloff = 8,
 
       -- Enable 24-bit RGB colours in the TUI
@@ -407,7 +407,7 @@ let
     vim.keymap.set('n', '<leader>hm', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon | Menu', silent = true })
 
     for i = 1, 9 do
-      vim.keymap.set('n', '<A-' .. tostring(i) .. '>', function() harpoon:list():select(11 - i) end, { desc = 'Harpoon | Goto ' .. tostring(i), silent = true })
+      vim.keymap.set('n', '<A-' .. tostring(i) .. '>', function() harpoon:list():select(11 - i) end, { desc = 'Harpoon | Goto ' .. tostring(11 - i), silent = true })
     end
     vim.keymap.set('n', '<A-0>', function() harpoon:list():select(1) end, { desc = 'Harpoon | Goto 1', silent = true })
   '';
