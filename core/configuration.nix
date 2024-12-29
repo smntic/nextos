@@ -15,7 +15,6 @@
     "${root}/modules/game_development.nix"
     "${root}/modules/images.nix"
     "${root}/modules/languages.nix"
-    "${root}/modules/libraries.nix"
     "${root}/modules/network.nix"
     "${root}/modules/printing.nix"
     "${root}/modules/reverse_engineering.nix"
