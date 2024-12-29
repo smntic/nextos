@@ -24,5 +24,16 @@
         XDG_GIT_DIR = "${config.home.homeDirectory}/git";
       };
     };
+
+    mimeApps = {
+      enable = true;
+
+      defaultApplications = {
+        "image/gif" = "sxiv.desktop";
+        "image/jpeg" = "sxiv.desktop";
+        "image/png" = "sxiv.desktop";
+        "image/webp" = "sxiv.desktop";
+      };
+    };
   };
 }
