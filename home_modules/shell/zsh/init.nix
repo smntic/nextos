@@ -6,32 +6,7 @@
     pkgs.thefuck
   ];
 
-  systemd.user.sessionVariables = {
-    SHELL = "${pkgs.zsh}/bin/zsh";
-  };
-
   programs.zsh = {
-    enable = true;
-
-    autosuggestion.enable = true;
-
-    defaultKeymap = "emacs";
-
-    antidote = {
-      enable = true;
-      plugins = [
-        "zsh-users/zsh-syntax-highlighting"
-        "zsh-users/zsh-autosuggestions"
-	"romkatv/powerlevel10k"
-      ];
-    };
-
-    history = {
-      append = true;
-      extended = true;
-      ignoreDups = true;
-    };
-
     initExtraFirst = ''
       # Enable powerlevel10k instant prompt
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
@@ -40,11 +15,11 @@
     '';
 
     initExtra = ''
-      source <(fzf --zsh)
+      source <(${pkgs.fzf}/bin/fzf --zsh)
       source ${./p10k.zsh}
 
       # Configure thefuck alias
-      eval ''$(thefuck --alias)
+      eval ''$(${pkgs.thefuck}/bin/thefuck --alias)
 
       # Fix for suggestion font color in tmux (https://github.com/zsh-users/zsh-autosuggestions/issues/229)
       export TERM=xterm-256color
@@ -62,13 +37,13 @@
       # Quick run tmux function
       run-tmux-widget() {
         tmux <>$TTY
-	zle redisplay
+        zle redisplay
       }
 
       # Quick run yazi function
       run-yazi-widget() {
         yazi <>$TTY
-	zle redisplay
+        zle redisplay
       }
 
       # Create the widgets
@@ -124,10 +99,6 @@
       WORDCHARS=''${WORDCHARS//-}
       WORDCHARS=''${WORDCHARS//.}
       WORDCHARS=''${WORDCHARS//\\}
-    '';
-
-    envExtra = ''
-      export CPP_TEMPLATE=${../cp/cpp_template.cpp}
     '';
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, root, inputs, ... }@args:
+{ root, ... }:
 
 {
   imports = [
@@ -10,6 +10,4 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };
-
-  home-manager.users.simon = import ./home.nix args;
 }

@@ -33,11 +33,12 @@
 		config.allowUnfree = true;
 	      };
             in
-	      nixpkgs.lib.nixosSystem {
+	      nixpkgs.lib.nixosSystem rec {
                 specialArgs = {
 	          inherit inputs;
 	          pkgs = pkgs;
 	          root = self;
+		  hostRoot = ./hosts/${hostName};
 	        };
                 modules = [
 	          ./core/configuration.nix
@@ -46,8 +47,15 @@
                   home-manager.nixosModules.home-manager {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                  }
+		    home-manager.extraSpecialArgs = specialArgs;
 
+		    home-manager.users = file.setForFile ./hosts/${hostName}/users (userName:
+		      {
+                        name = userName;
+			value = import ./hosts/${hostName}/users/${userName}/home.nix;
+		      }
+		    );
+		  }
 	        ] ++ file.listForFile ./hosts/${hostName}/users (userName:
 	            ./hosts/${hostName}/users/${userName}/user.nix);
               };

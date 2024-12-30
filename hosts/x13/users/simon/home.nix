@@ -1,12 +1,11 @@
-{ ... }:
+{ root, ... }:
 
 {
   imports = [
-    ./desktop/hyprland.nix
-    ./shell/zsh.nix
-    ./editor/nvim.nix
-    ./python/python.nix
-
+    "${root}/home_modules/desktop.nix"
+    "${root}/home_modules/nvim.nix"
+    "${root}/home_modules/shell.nix"
+    ./python.nix
     ./xdg.nix
   ];
 
@@ -20,6 +19,7 @@
       garbage = "sudo nix-collect-garbage -d --delete-older-than 14d";
     };
 
+    # Don't change this.
     stateVersion = "24.11";
   };
 
