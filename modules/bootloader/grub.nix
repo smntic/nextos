@@ -12,6 +12,10 @@
          enable = true;
          efiSupport = true;
          device = "nodev";
+
+         backgroundColor = "#000000";
+         splashImage = ./grub/background.png;
+	 splashMode = "normal";
       };
     };
   };
