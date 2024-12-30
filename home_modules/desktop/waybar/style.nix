@@ -2,10 +2,20 @@
 
 {
   programs.waybar.style = ''
+    /* We have to be more specific than this, because stylix overwrites it below this in the config file.
     * {
-      font-family: 'monospace';
+      font-family: "monospace";
+    }
+    */
+
+    label.module {
+      font-family: "monospace";
     }
     
+    #workspaces label {
+      font-family: "monospace";
+    }
+  
     #workspaces button {
       padding: 0 0.5em;
       border-radius: 0;
@@ -26,7 +36,7 @@
     #workspaces button.urgent {
       background: alpha(@base08, 0.3);
     }
-    
+
     .modules-right label.module {
       margin-right: 0.5em;
     }

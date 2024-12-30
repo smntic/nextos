@@ -6,7 +6,6 @@
   ];
 
   fonts.packages = [
-    pkgs.noto-fonts
     pkgs.nerd-fonts.symbols-only
   ];
 
@@ -49,26 +48,6 @@
 	desktop = 10;
 	popups = 10;
 	terminal = 11;
-      };
-
-      serif = {
-        package = pkgs.noto-fonts;
-	name = "Noto Serif";
-      };
-
-      sansSerif = {
-        package = pkgs.noto-fonts;
-	name = "Noto Sans Serif";
-      };
-
-      monospace = {
-        package = pkgs.noto-fonts;
-	name = "Noto Sans Mono";
-      };
-
-      emoji = {
-        package = pkgs.noto-fonts;
-	name = "Noto Color Emoji";
       };
     };
 

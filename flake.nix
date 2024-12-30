@@ -49,10 +49,10 @@
                     home-manager.useUserPackages = true;
 		    home-manager.extraSpecialArgs = specialArgs;
 
-		    home-manager.users = file.setForFile ./hosts/${hostName}/users (userName:
+	            home-manager.users = file.setForFile ./hosts/${hostName}/users (userName:
 		      {
-                        name = userName;
-			value = import ./hosts/${hostName}/users/${userName}/home.nix;
+		        name = userName;
+		        value = import ./hosts/${hostName}/users/${userName}/home.nix;
 		      }
 		    );
 		  }
