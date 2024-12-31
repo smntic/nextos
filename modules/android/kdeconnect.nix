@@ -1,11 +1,11 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 
 {
   options = {
-    kdeconnect.enable = lib.mkEnableOption "kdeconnect";
+    modules.kdeconnect.enable = lib.mkEnableOption "kdeconnect";
   };
 
-  config = lib.mkIf config.kdeconnect.enable {
+  config = lib.mkIf config.modules.kdeconnect.enable {
     programs.kdeconnect.enable = true;
   };
 }

@@ -2,10 +2,10 @@
 
 {
   options = {
-    gcc.enable = lib.mkEnableOption "gcc";
+    modules.gcc.enable = lib.mkEnableOption "gcc";
   };
 
-  config = lib.mkIf config.gcc.enable {
+  config = lib.mkIf config.modules.gcc.enable {
     environment.systemPackages = [ pkgs.gcc ];
   };
 }

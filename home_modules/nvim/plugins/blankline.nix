@@ -5,7 +5,7 @@
     indent-blankline-nvim
   ];
 
-  lua = [
+  homeModules.nvim.lua = [
     ''
       local blankline = require('ibl')
       blankline.setup()

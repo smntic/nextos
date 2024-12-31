@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -6,9 +6,9 @@
       pkgs.gcc
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
-        -- This could technically be it's own plugin
+        -- This could technically (i.e. should) be it's own plugin
 
         local function term_exec(cmd)
           if vim.env.TMUX ~= nil then
@@ -19,7 +19,7 @@
             vim.cmd(term_cmd)
           end
         end
-        
+
         local build_functions = {
           cpp = function()
             local filename = vim.fn.expand('%:p')
@@ -33,7 +33,7 @@
             vim.api.nvim_command('! ' .. command)
           end,
         }
-        
+
         local run_functions = {
           cpp = function()
             local cmd = vim.fn.expand('%:p:r')
@@ -44,13 +44,8 @@
             local cmd = string.format('python %s', filename)
             term_exec(cmd)
           end,
-          javascript = function()
-            local filename = vim.fn.expand('%:p')
-            local cmd = string.format('node %s', filename)
-            term_exec(cmd)
-          end,
         }
-        
+
         local function check_script(script)
           local f = io.open(script, 'r')
           if f == nil then
@@ -59,15 +54,15 @@
           io.close(f)
           return true
         end
-        
+
         local function run_from_script(script)
           term_exec(script)
         end
-        
+
         local function build_from_script(script)
           term_exec(script)
         end
-        
+
         local function run_program()
           local shell_script = vim.fn.getcwd() .. '/run.sh'
           if check_script(shell_script) then
@@ -83,7 +78,7 @@
             print("No run function defined for filetype: " .. filetype)
           end
         end
-        
+
         local function build_program()
           local shell_script = vim.fn.getcwd() .. '/build.sh'
           if check_script(shell_script) then
@@ -99,7 +94,7 @@
             print("No build function defined for filetype: " .. filetype)
           end
         end
-        
+
         vim.keymap.set('n', '<A-b>', build_program, { desc = 'Make | Build Program', silent = true })
         vim.keymap.set('n', '<A-r>', run_program, { desc = 'Make | Run Program', silent = true })
       ''

@@ -2,10 +2,10 @@
 
 {
   options = {
-    psmisc.enable = lib.mkEnableOption "psmisc";
+    modules.psmisc.enable = lib.mkEnableOption "psmisc";
   };
 
-  config = lib.mkIf config.psmisc.enable {
+  config = lib.mkIf config.modules.psmisc.enable {
     environment.systemPackages = [ pkgs.psmisc ];
   };
 }

@@ -2,10 +2,12 @@
 
 {
   options = {
-    pipewire.enable = lib.mkEnableOption "pipewire";
+    modules.pipewire.enable = lib.mkEnableOption "pipewire";
   };
 
-  config = lib.mkIf config.pipewire.enable {
+  config = lib.mkIf config.modules.pipewire.enable {
+    # https://wiki.nixos.org/wiki/PipeWire
+    # Jack support is not necessary
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

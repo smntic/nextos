@@ -2,10 +2,10 @@
 
 {
   options = {
-    neovim.enable = lib.mkEnableOption "neovim";
+    modules.nvim.enable = lib.mkEnableOption "neovim";
   };
 
-  config = lib.mkIf config.neovim.enable {
+  config = lib.mkIf config.modules.nvim.enable {
     environment.systemPackages = [ pkgs.neovim ];
   };
 }

@@ -28,7 +28,7 @@ echo "Done partitioning and formatting disk!"
 sudo mkdir -p /mnt/etc/nixos
 echo "Done creating NixOS configuration folder!"
 
-# Copy nextOS files
+# Copy nextOS files ('*' does not copy hidden files; '.' copies all files)
 sudo cp -r ./. /mnt/etc/nixos
 
 # Generate hardware configuration (and only hardware configuration)

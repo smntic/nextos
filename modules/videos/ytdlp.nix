@@ -2,10 +2,10 @@
 
 {
   options = {
-    ytdlp.enable = lib.mkEnableOption "ytdlp";
+    modules.ytdlp.enable = lib.mkEnableOption "ytdlp";
   };
 
-  config = lib.mkIf config.ytdlp.enable {
+  config = lib.mkIf config.modules.ytdlp.enable {
     environment.systemPackages = [ pkgs.yt-dlp ];
   };
 }

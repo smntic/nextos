@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -7,13 +7,13 @@
       pkgs.nil
       pkgs.clang-tools
     ];
-  
+
     programs.neovim.plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       luasnip
     ];
-  
-    lua = [
+
+    homeModules.nvim.lua = [
       ''
         local conform = require('conform')
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -31,22 +31,22 @@
             vim.keymap.set('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = 'LSP | Code action', buffer = event.buf, silent = true })
           end
         })
-        
+
         local lspconfig = require('lspconfig')
         local ls_capabilities = require('cmp_nvim_lsp').default_capabilities()
-        
+
         local setup_lsp = function(server)
           lspconfig[server].setup({
             capabilities = lsp_capabilities
           })
         end
-        
+
         local servers = {
           'clangd',
           'pyright',
           'nil_ls',
         }
-        
+
         for _, server in ipairs(servers) do
           setup_lsp(server)
         end

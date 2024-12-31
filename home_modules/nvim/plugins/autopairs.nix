@@ -1,12 +1,12 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
     programs.neovim.plugins = with pkgs.vimPlugins; [
       nvim-autopairs
     ];
-  
-    lua = [ 
+
+    homeModules.nvim.lua = [ 
       ''
         local autopairs = require('nvim-autopairs')
         autopairs.setup()

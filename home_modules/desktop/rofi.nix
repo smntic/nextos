@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -7,5 +7,11 @@
     ./rofi/theme.nix
   ];
 
-  programs.rofi.enable = true;
+  options = {
+    homeModules.rofi.enable = lib.mkEnableOption "rofi";
+  };
+
+  config = lib.mkIf config.homeModules.rofi.enable {
+    programs.rofi.enable = true;
+  };
 }

@@ -1,12 +1,12 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
     programs.neovim.plugins = with pkgs.vimPlugins; [
       comment-nvim
     ];
-    
-    lua = [
+
+    homeModules.nvim.lua = [
       ''
         local comment = require('Comment')
         comment.setup()

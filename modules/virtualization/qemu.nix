@@ -2,10 +2,10 @@
 
 {
   options = {
-    qemu.enable = lib.mkEnableOption "qemu";
+    modules.qemu.enable = lib.mkEnableOption "qemu";
   };
 
-  config = lib.mkIf config.qemu.enable {
+  config = lib.mkIf config.modules.qemu.enable {
     environment.systemPackages = [
       pkgs.qemu
     ];

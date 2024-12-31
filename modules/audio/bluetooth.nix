@@ -2,10 +2,10 @@
 
 {
   options = {
-    bluetooth.enable = lib.mkEnableOption "bluetooth";
+    modules.bluetooth.enable = lib.mkEnableOption "bluetooth";
   };
 
-  config = lib.mkIf config.bluetooth.enable {
+  config = lib.mkIf config.modules.bluetooth.enable {
     hardware = {
       bluetooth = {
         enable = true;

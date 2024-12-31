@@ -2,10 +2,10 @@
 
 {
   options = {
-    godot.enable = lib.mkEnableOption "godot";
+    modules.godot.enable = lib.mkEnableOption "godot";
   };
 
-  config = lib.mkIf config.godot.enable {
+  config = lib.mkIf config.modules.godot.enable {
     environment.systemPackages = [ pkgs.godot_4-mono ];
   };
 }

@@ -2,10 +2,10 @@
 
 {
   options = {
-    sxiv.enable = lib.mkEnableOption "sxiv";
+    modules.sxiv.enable = lib.mkEnableOption "sxiv";
   };
 
-  config = lib.mkIf config.sxiv.enable {
+  config = lib.mkIf config.modules.sxiv.enable {
     environment.systemPackages = [ pkgs.sxiv ];
   };
 }

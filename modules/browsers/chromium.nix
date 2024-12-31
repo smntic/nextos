@@ -2,10 +2,10 @@
 
 {
   options = {
-    chromium.enable = lib.mkEnableOption "chromium";
+    modules.chromium.enable = lib.mkEnableOption "chromium";
   };
 
-  config = lib.mkIf config.chromium.enable {
+  config = lib.mkIf config.modules.chromium.enable {
     environment.systemPackages = [ pkgs.chromium ];
   };
 }

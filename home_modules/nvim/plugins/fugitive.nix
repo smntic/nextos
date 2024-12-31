@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -6,7 +6,7 @@
       vim-fugitive
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
         vim.keymap.set('n', '<leader>gg', '<cmd>Git<CR>', { desc = 'Git | Open window', silent = true })
         vim.keymap.set('n', '<leader>gc', '<cmd>Git commit<CR>', { desc = 'Git | Commit', silent = true })

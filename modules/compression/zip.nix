@@ -2,10 +2,10 @@
 
 {
   options = {
-    zip.enable = lib.mkEnableOption "zip";
+    modules.zip.enable = lib.mkEnableOption "zip";
   };
 
-  config = lib.mkIf config.zip.enable {
+  config = lib.mkIf config.modules.zip.enable {
     environment.systemPackages = [ pkgs.zip pkgs.unzip ];
   };
 }

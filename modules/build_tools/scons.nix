@@ -2,10 +2,10 @@
 
 {
   options = {
-    scons.enable = lib.mkEnableOption "scons";
+    modules.scons.enable = lib.mkEnableOption "scons";
   };
 
-  config = lib.mkIf config.scons.enable {
+  config = lib.mkIf config.modules.scons.enable {
     environment.systemPackages = [ pkgs.scons ];
   };
 }

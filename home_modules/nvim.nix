@@ -1,17 +1,23 @@
-{ ... }@args:
+{ lib, config, ... }:
 
 {
   imports = [
     ./nvim/lua_config.nix
   ];
 
-  programs.neovim = {
-    enable = true;
+  options = {
+    homeModules.nvim.enable = lib.mkEnableOption "neovim";
+  };
 
-    # Set nvim as the default editor and replace vim
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
+  config = lib.mkIf config.homeModules.nvim.enable {
+    programs.neovim = {
+      enable = true;
+
+      # Set nvim as the default editor and replace vim
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+    };
   };
 }

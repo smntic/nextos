@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 { 
   config = {
@@ -6,11 +6,10 @@
       markdown-preview-nvim
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
         vim.keymap.set('n', '<leader>m', vim.cmd.MarkdownPreviewToggle, { desc = 'MarkdownPreview | Toggle', silent = true })
       ''
     ];
   };
 }
-

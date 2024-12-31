@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -10,10 +10,11 @@
       cmp_luasnip
       cmp-nvim-lsp
       cmp-nvim-lua
+      cmp-nvim-lsp-signature-help
       friendly-snippets
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
         local cmp = require('cmp')
         cmp.setup({
@@ -23,6 +24,7 @@
             { name = 'buffer' },
             { name = 'path' },
             { name = 'luasnip' },
+            { name = 'nvim_lsp_signature_help' },
           },
 
           mapping = cmp.mapping.preset.insert({
@@ -38,6 +40,7 @@
             end,
           },
         })
+
         cmp.setup.cmdline(':', {
           mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources({

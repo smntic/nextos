@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
   # Dear firefox, fuck you kindly.
@@ -9,5 +9,11 @@
     ./firefox/profiles.nix
   ];
 
-  programs.firefox.enable = true;
+  options = {
+    homeModules.firefox.enable = lib.mkEnableOption "firefox";
+  };
+
+  config = lib.mkIf config.homeModules.firefox.enable {
+    programs.firefox.enable = true;
+  };
 }

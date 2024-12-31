@@ -2,10 +2,10 @@
 
 {
   options = {
-    ghidra.enable = lib.mkEnableOption "ghidra";
+    modules.ghidra.enable = lib.mkEnableOption "ghidra";
   };
 
-  config = lib.mkIf config.ghidra.enable {
+  config = lib.mkIf config.modules.ghidra.enable {
     environment.systemPackages = [ pkgs.ghidra ];
   };
 }

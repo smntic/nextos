@@ -1,14 +1,15 @@
 { ... }:
 
 {
-  programs.git = {
-    enable = true;
+  homeModules = {
+    nvim.enable = true;
 
-    userName = "Simon Ashton";
-    userEmail = "simonashton.dev@gmail.com";
+    git = {
+      enable = true;
+      name = "Simon Ashton";
+      email = "simonashton.dev@gmail.com";
+    };
   };
 
-  home = {
-    stateVersion = "24.11";
-  };
+  home.stateVersion = "24.11";
 }

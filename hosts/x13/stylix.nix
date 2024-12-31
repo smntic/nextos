@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.stylix.nixosModules.stylix
+  ];
+
   environment.systemPackages = [
     pkgs.capitaine-cursors
   ];
@@ -12,7 +16,11 @@
   stylix = {
     enable = true;
 
+    # Wallpaper
     image = ./assets/wallpapers/forest.png;
+
+    # Currently, accessing these properties from config does not work if they are not strings.
+    # Thus, I copied these values from "tokyo-city-terminal-dark" (base16).
     base16Scheme = {
       base00 = "171D23";
       base01 = "1D252C";
@@ -45,14 +53,17 @@
     fonts = {
       sizes = {
         applications = 11;
-	desktop = 10;
-	popups = 10;
-	terminal = 11;
+        desktop = 10;
+        popups = 10;
+        terminal = 11;
       };
     };
 
     targets = {
+      # Do not theme the TTY
       console.enable = false;
+
+      # Do not theme the grub bootloader
       grub.enable = false;
     };
   };

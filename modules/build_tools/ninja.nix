@@ -2,10 +2,10 @@
 
 {
   options = {
-    ninja.enable = lib.mkEnableOption "ninja";
+    modules.ninja.enable = lib.mkEnableOption "ninja";
   };
 
-  config = lib.mkIf config.ninja.enable {
+  config = lib.mkIf config.modules.ninja.enable {
     environment.systemPackages = [ pkgs.ninja ];
   };
 }

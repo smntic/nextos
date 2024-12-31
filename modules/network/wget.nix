@@ -2,10 +2,10 @@
 
 {
   options = {
-    wget.enable = lib.mkEnableOption "wget";
+    modules.wget.enable = lib.mkEnableOption "wget";
   };
 
-  config = lib.mkIf config.wget.enable {
+  config = lib.mkIf config.modules.wget.enable {
     environment.systemPackages = [ pkgs.wget ];
   };
 }

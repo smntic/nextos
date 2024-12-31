@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -6,5 +6,11 @@
     ./kitty/config.nix
   ];
 
-  programs.kitty.enable = true;
+  options = {
+    homeModules.kitty.enable = lib.mkEnableOption "kitty";
+  };
+
+  config = lib.mkIf config.homeModules.kitty.enable {
+    programs.kitty.enable = true;
+  };
 }

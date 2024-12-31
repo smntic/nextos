@@ -2,10 +2,10 @@
 
 {
   options = {
-    scrcpy.enable = lib.mkEnableOption "scrcpy";
+    modules.scrcpy.enable = lib.mkEnableOption "scrcpy";
   };
 
-  config = lib.mkIf config.scrcpy.enable {
+  config = lib.mkIf config.modules.scrcpy.enable {
     environment.systemPackages = [ pkgs.scrcpy ];
   };
 }

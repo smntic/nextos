@@ -1,12 +1,18 @@
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.libnotify
-  ];
+  options = {
+    homeModules.mako.enable = lib.mkEnableOption "mako";
+  };
 
-  services.mako = {
-    enable = true;
-    defaultTimeout = 3000;
+  config = lib.mkIf config.homeModules.mako.enable {
+    home.packages = [
+      pkgs.libnotify
+    ];
+
+    services.mako = {
+      enable = true;
+      defaultTimeout = 3000;
+    };
   };
 }

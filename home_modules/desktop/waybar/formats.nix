@@ -9,20 +9,20 @@
       interval = 1;
       tooltip = false;
     };
-  
+
     disk = {
       format = "󰗮 {specific_free:0.1f} GB";
       unit = "GB";
       interval = 1;
       tooltip = false;
     };
-  
+
     memory = {
       format = "󰍛 {used:0.1f} GB";
       interval = 1;
       tooltip = false;
     };
-  
+
     battery = {
       states = {
         warning = 30;
@@ -36,14 +36,14 @@
       interval = 1;
       tooltip = false;
     };
-  
+
     wireplumber = {
       format = "󰎇 {volume}%";
       format-muted = "󰎊 {volume}%";
       interval = 1;
       tooltip = false;
     };
-  
+
     "custom/separator" = {
       format = "|";
       interval = "once";

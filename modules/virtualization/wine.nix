@@ -5,13 +5,13 @@ let
 in
   {
     options = {
-      wine.enable = lib.mkEnableOption "wine";
-      wine.waylandSupport = lib.mkEnableOption "wayland support (unstable)";
+      modules.wine.enable = lib.mkEnableOption "wine";
+      modules.wine.waylandSupport = lib.mkEnableOption "wayland support (unstable)";
     };
-  
-    config = lib.mkIf config.wine.enable {
+
+    config = lib.mkIf config.modules.wine.enable {
       # Based on https://nixos.wiki/wiki/Wine
-      environment.systemPackages = operator.ternary config.wine.waylandSupport
+      environment.systemPackages = operator.ternary config.modules.wine.waylandSupport
         [ pkgs.wineWowPackages.waylandFull ] [ pkgs.wineWowPackages.stable ];
     };
   }

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -11,8 +11,8 @@
     programs.neovim.plugins = with pkgs.vimPlugins; [
       conform-nvim
     ];
-    
-    lua = [
+
+    homeModules.nvim.lua = [
       ''
         local formatters = {
           lua = { "stylua" },
@@ -20,7 +20,7 @@
           cpp = { "clang_format" },
           c = { "clang_format" },
         }
-        
+
         local prettier_ft = {
           "css",
           "html",
@@ -31,11 +31,11 @@
           "typescript",
           "typescriptreact",
         }
-        
+
         for _, filetype in pairs(prettier_ft) do
           formatters[filetype] = { "prettier" }
         end
-        
+
         local conform = require('conform')
         conform.setup {
           formatters_by_ft = formatters,
@@ -44,4 +44,3 @@
     ];
   };
 }
-

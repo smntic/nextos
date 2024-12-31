@@ -2,10 +2,10 @@
 
 {
   options = {
-    obs.enable = lib.mkEnableOption "obs";
+    modules.obs.enable = lib.mkEnableOption "obs";
   };
 
-  config = lib.mkIf config.obs.enable {
+  config = lib.mkIf config.modules.obs.enable {
     environment.systemPackages = [ pkgs.obs-studio ];
   };
 }

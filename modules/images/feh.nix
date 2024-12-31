@@ -2,10 +2,10 @@
 
 {
   options = {
-    feh.enable = lib.mkEnableOption "feh";
+    modules.feh.enable = lib.mkEnableOption "feh";
   };
 
-  config = lib.mkIf config.feh.enable {
+  config = lib.mkIf config.modules.feh.enable {
     environment.systemPackages = [ pkgs.feh ];
   };
 }

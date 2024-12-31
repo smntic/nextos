@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -7,5 +7,11 @@
     ./waybar/style.nix
   ];
 
-  programs.waybar.enable = true;
+  options = {
+    homeModules.waybar.enable = lib.mkEnableOption "waybar";
+  };
+
+  config = lib.mkIf config.homeModules.waybar.enable {
+    programs.waybar.enable = true;
+  };
 }

@@ -2,10 +2,10 @@
 
 {
   options = {
-    blender.enable = lib.mkEnableOption "blender";
+    modules.blender.enable = lib.mkEnableOption "blender";
   };
 
-  config = lib.mkIf config.blender.enable {
+  config = lib.mkIf config.modules.blender.enable {
     environment.systemPackages = [ pkgs.blender ];
   };
 }

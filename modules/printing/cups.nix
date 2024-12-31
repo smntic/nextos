@@ -2,22 +2,24 @@
 
 {
   options = {
-    cups.enable = lib.mkEnableOption "cups";
-    cups.drivers = lib.mkOption {
+    modules.cups.enable = lib.mkEnableOption "cups";
+    modules.cups.drivers = lib.mkOption {
       type = lib.types.listOf lib.types.package;
-      default = [];
       description = "List of printer drivers to use.";
+      example = "[ pkgs.hplip ]";
+      default = [];
     };
   };
 
-  config = lib.mkIf config.cups.enable {
+  config = lib.mkIf config.modules.cups.enable {
     # https://nixos.wiki/wiki/Printing
     services = {
       printing = {
         enable = true;
-        drivers = config.cups.drivers;
+        drivers = config.modules.cups.drivers;
       };
 
+      # Enable autodiscovery of network printers
       avahi = {
         enable = true;
         nssmdns4 = true;

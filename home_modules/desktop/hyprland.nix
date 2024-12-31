@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -11,5 +11,11 @@
     ./hyprland/start.nix
   ];
 
-  wayland.windowManager.hyprland.enable = true;
+  options = {
+    homeModules.hyprland.enable = lib.mkEnableOption "hyprland";
+  };
+
+  config = lib.mkIf config.homeModules.hyprland.enable {
+    wayland.windowManager.hyprland.enable = true;
+  };
 }

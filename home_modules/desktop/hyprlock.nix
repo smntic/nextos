@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -7,5 +7,11 @@
     ./hyprlock/input_field.nix
   ];
 
-  programs.hyprlock.enable = true;
+  options = {
+    homeModules.hyprlock.enable = lib.mkEnableOption "hyprlock";
+  };
+
+  config = lib.mkIf config.homeModules.hyprlock.enable {
+    programs.hyprlock.enable = true;
+  };
 }

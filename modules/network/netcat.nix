@@ -2,10 +2,10 @@
 
 {
   options = {
-    netcat.enable = lib.mkEnableOption "netcat";
+    modules.netcat.enable = lib.mkEnableOption "netcat";
   };
 
-  config = lib.mkIf config.netcat.enable {
+  config = lib.mkIf config.modules.netcat.enable {
     environment.systemPackages = [ pkgs.netcat-gnu ];
   };
 }

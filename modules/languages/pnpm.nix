@@ -2,10 +2,10 @@
 
 {
   options = {
-    pnpm.enable = lib.mkEnableOption "pnpm";
+    modules.pnpm.enable = lib.mkEnableOption "pnpm";
   };
 
-  config = lib.mkIf config.pnpm.enable {
+  config = lib.mkIf config.modules.pnpm.enable {
     environment.systemPackages = [ pkgs.pnpm ];
   };
 }

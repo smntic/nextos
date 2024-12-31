@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   imports = [
@@ -8,11 +8,18 @@
     ./zsh/env.nix
   ];
 
-  systemd.user.sessionVariables = {
-    SHELL = "${pkgs.zsh}/bin/zsh";
+  options = {
+    homeModules.zsh.enable = lib.mkEnableOption "zsh";
   };
 
-  programs.zsh = {
-    enable = true;
+  config = lib.mkIf config.homeModules.zsh.enable {
+    # Set default shell for this user
+    systemd.user.sessionVariables = {
+      SHELL = "${pkgs.zsh}/bin/zsh";
+    };
+
+    programs.zsh = {
+      enable = true;
+    };
   };
 }

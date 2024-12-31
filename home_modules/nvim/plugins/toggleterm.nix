@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -6,7 +6,7 @@
       toggleterm-nvim
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
         local toggleterm = require('toggleterm')
         toggleterm.setup()
@@ -14,4 +14,3 @@
     ];
   };
 }
-

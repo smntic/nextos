@@ -1,4 +1,5 @@
 {
+  # Mostly taken from https://github.com/nix-community/disko
   disko.devices = {
     disk = {
       main = {

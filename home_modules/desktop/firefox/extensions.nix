@@ -3,11 +3,11 @@
 {
   programs.firefox.policies.ExtensionSettings = let
     extension = shortId: uuid: {
-        name = uuid;
-        value = {
-            install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
-            installation_mode = "normal_installed";
-        };
+      name = uuid;
+      value = {
+        install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+        installation_mode = "normal_installed";
+      };
     };
   in
     # Find the shortId in the URL. e.g. https://addons.mozilla.org/en-CA/firefox/addon/<shortId>/

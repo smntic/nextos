@@ -2,10 +2,10 @@
 
 {
   options = {
-    cmake.enable = lib.mkEnableOption "cmake";
+    modules.cmake.enable = lib.mkEnableOption "cmake";
   };
 
-  config = lib.mkIf config.cmake.enable {
+  config = lib.mkIf config.modules.cmake.enable {
     environment.systemPackages = [ pkgs.cmake ];
   };
 }

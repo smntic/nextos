@@ -5,16 +5,16 @@
     gestures = {
       workspace_swipe = true;
     };
-    
+
     input = {
       # Global mouse config
       accel_profile = "flat";
-      
+
       # Global touchpad config
       touchpad = {
         scroll_factor = 0.3;
       };
-      
+
       # Global keyboard config
       kb_layout = "us";
       kb_variant = "";

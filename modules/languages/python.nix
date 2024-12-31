@@ -2,10 +2,10 @@
 
 {
   options = {
-    python.enable = lib.mkEnableOption "python";
+    modules.python.enable = lib.mkEnableOption "python";
   };
 
-  config = lib.mkIf config.python.enable {
+  config = lib.mkIf config.modules.python.enable {
     environment.systemPackages = [ pkgs.python3 ];
   };
 }

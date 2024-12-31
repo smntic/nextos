@@ -2,10 +2,10 @@
 
 {
   options = {
-    gdb.enable = lib.mkEnableOption "gdb";
+    modules.gdb.enable = lib.mkEnableOption "gdb";
   };
 
-  config = lib.mkIf config.gdb.enable {
+  config = lib.mkIf config.modules.gdb.enable {
     environment.systemPackages = [ pkgs.gdb ];
   };
 }

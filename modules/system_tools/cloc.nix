@@ -2,10 +2,10 @@
 
 {
   options = {
-    cloc.enable = lib.mkEnableOption "cloc";
+    modules.cloc.enable = lib.mkEnableOption "cloc";
   };
 
-  config = lib.mkIf config.cloc.enable {
+  config = lib.mkIf config.modules.cloc.enable {
     environment.systemPackages = [ pkgs.cloc ];
   };
 }

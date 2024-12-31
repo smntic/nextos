@@ -1,8 +1,11 @@
-{ config, ... }:
+{ ... }:
 
 {
-  config.lua = [
+  config.homeModules.nvim.lua = [
     ''
+      -- Set leader to space (must be defined BEFORE mappings with <leader>)
+      vim.g.mapleader = ' ',
+
       -- Yank/Delete all text
       vim.keymap.set('n', '<leader>D', '<cmd>%d<cr>', { desc = 'General | Delete all text', silent = true })
       vim.keymap.set('n', '<leader>y', '<cmd>%y+<cr>', { desc = 'General | Yank all text', silent = true })
@@ -80,8 +83,8 @@
       -- Quickfix navigation
       vim.keymap.set('n', '<leader>k', '<cmd>cnext<CR>zz', { desc = 'General | Quickfix next', silent = true })
       vim.keymap.set('n', '<leader>j', '<cmd>cprev<CR>zz', { desc = 'General | Quickfix prev', silent = true })
-      vim.keymap.set('n', '<leader>K', '<cmd>lnext<CR>zz', { desc = 'General | Quickfix next in window', silent = true })
-      vim.keymap.set('n', '<leader>J', '<cmd>lprev<CR>zz', { desc = 'General | Quickfix prev in window', silent = true })
+      vim.keymap.set('n', '<leader>K', '<cmd>lnext<CR>zz', { desc = 'General | Quickfix next in location list', silent = true })
+      vim.keymap.set('n', '<leader>J', '<cmd>lprev<CR>zz', { desc = 'General | Quickfix prev in location list', silent = true })
 
       -- netrw
       vim.keymap.set('n', '<A-f>', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw', silent = true })

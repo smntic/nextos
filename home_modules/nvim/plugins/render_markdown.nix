@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -6,7 +6,7 @@
       render-markdown-nvim
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
       ''
     ];

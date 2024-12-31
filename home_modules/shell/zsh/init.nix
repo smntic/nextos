@@ -69,31 +69,31 @@
 
       # Delete forward
       bindkey '\e[3~' delete-char
-      
+
       # Delete forward a word
       bindkey '^[[3;3~' delete-word
       bindkey '^[[3;5~' delete-word
       bindkey '^[[3;7~' delete-word
-      
+
       # Delete backward a word
       bindkey '^H' backward-delete-word
-      
+
       # Move backward a word
       bindkey '^[[1;3D' backward-word
       bindkey '^[[1;5D' backward-word
       bindkey '^[[1;7D' backward-word
-      
+
       # Move forward a word
       bindkey '^[[1;3C' forward-word
       bindkey '^[[1;5C' forward-word
       bindkey '^[[1;7C' forward-word
-      
+
       # Move to home/end
       bindkey '^[[H' beginning-of-line
       bindkey '^[[1~' beginning-of-line
       bindkey '^[[F' end-of-line
       bindkey '^[[4~' end-of-line
-      
+
       # Change the definition of a "word"
       WORDCHARS=''${WORDCHARS//\//}
       WORDCHARS=''${WORDCHARS//-}

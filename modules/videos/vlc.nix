@@ -2,10 +2,10 @@
 
 {
   options = {
-    vlc.enable = lib.mkEnableOption "vlc";
+    modules.vlc.enable = lib.mkEnableOption "vlc";
   };
 
-  config = lib.mkIf config.vlc.enable {
+  config = lib.mkIf config.modules.vlc.enable {
     environment.systemPackages = [ pkgs.vlc ];
   };
 }

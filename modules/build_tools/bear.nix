@@ -2,10 +2,10 @@
 
 {
   options = {
-    bear.enable = lib.mkEnableOption "bear";
+    modules.bear.enable = lib.mkEnableOption "bear";
   };
 
-  config = lib.mkIf config.bear.enable {
+  config = lib.mkIf config.modules.bear.enable {
     environment.systemPackages = [ pkgs.bear ];
   };
 }

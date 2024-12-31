@@ -2,10 +2,10 @@
 
 {
   options = {
-    plasma.enable = lib.mkEnableOption "plasma";
+    modules.plasma.enable = lib.mkEnableOption "plasma";
   };
 
-  config = lib.mkIf config.plasma.enable {
+  config = lib.mkIf config.modules.plasma.enable {
     services.desktopManager.plasma6.enable = true;
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -10,14 +10,14 @@
       telescope-nvim
     ];
 
-    lua = [
+    homeModules.nvim.lua = [
       ''
         local telescope_builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, { desc = 'Telescope | Find files', silent = true })
         vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, { desc = 'Telescope | Live grep', silent = true })
         vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, { desc = 'Telescope | Buffers', silent = true })
         vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Telescope | Help tags', silent = true })
-      
+
         local telescope = require('telescope')
         local telescope_actions = require('telescope.actions')
         telescope.setup {
