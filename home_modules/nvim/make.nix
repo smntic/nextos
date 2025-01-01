@@ -124,8 +124,8 @@
           end
         end
 
-        vim.keymap.set('n', '<A-b>', build_program, { desc = 'Make | Build Program', silent = true })
-        vim.keymap.set('n', '<A-r>', run_program, { desc = 'Make | Run Program', silent = true })
+        vim.keymap.set('n', '<leader>b', build_program, { desc = 'Make | Build Program', silent = true })
+        vim.keymap.set('n', '<leader>r', run_program, { desc = 'Make | Run Program', silent = true })
       ''
     ];
   };

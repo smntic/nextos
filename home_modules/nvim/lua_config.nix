@@ -4,6 +4,7 @@ let
   pluginFiles = import ./plugins.nix args;
   otherFiles = [ ./options.nix ./mappings.nix ./make.nix ];
   allFiles = pluginFiles ++ otherFiles;
+  first = import ./first.nix args;
 in
   {
     imports = allFiles;
@@ -29,7 +30,7 @@ in
             '';
         luaConfig = lib.strings.concatMapStrings luaMap config.homeModules.nvim.lua;
       in
-        luaConfig;
+        first + luaConfig;
     };
   }
 

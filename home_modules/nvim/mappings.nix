@@ -3,9 +3,6 @@
 {
   config.homeModules.nvim.lua = [
     ''
-      -- Set leader to space (must be defined BEFORE mappings with <leader>)
-      vim.g.mapleader = ' ',
-
       -- Yank/Delete all text
       vim.keymap.set('n', '<leader>D', '<cmd>%d<cr>', { desc = 'General | Delete all text', silent = true })
       vim.keymap.set('n', '<leader>y', '<cmd>%y+<cr>', { desc = 'General | Yank all text', silent = true })
@@ -87,10 +84,10 @@
       vim.keymap.set('n', '<leader>J', '<cmd>lprev<CR>zz', { desc = 'General | Quickfix prev in location list', silent = true })
 
       -- netrw
-      vim.keymap.set('n', '<A-f>', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw', silent = true })
+      vim.keymap.set('n', '<leader>nf', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw', silent = true })
 
       -- Toggle terminal
-      vim.keymap.set('n', '<A-t>', '<cmd>ToggleTerm<CR>', { desc = 'General | Toggle Terminal', silent = true })
+      vim.keymap.set('n', '<leader>nt', '<cmd>ToggleTerm<CR>', { desc = 'General | Toggle Terminal', silent = true })
     ''
   ];
 }
