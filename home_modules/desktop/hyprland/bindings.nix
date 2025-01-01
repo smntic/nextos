@@ -65,6 +65,7 @@ in
     wayland.windowManager.hyprland.settings = {
       # Bindings
       "$mod" = "SUPER";
+      "$alt_mod" = "ALT";
 
       bindle = [
       # Brightness control
@@ -81,10 +82,10 @@ in
       "$mod SHIFT, l, exec, ${moveWindowScript} 100 r move"
 
       # Resize window
-      "$mod ALT, h, exec, ${moveWindowScript} 100 l resize"
-      "$mod ALT, j, exec, ${moveWindowScript} 100 d resize"
-      "$mod ALT, k, exec, ${moveWindowScript} 100 u resize"
-      "$mod ALT, l, exec, ${moveWindowScript} 100 r resize"
+      "$mod $alt_mod, h, exec, ${moveWindowScript} 100 l resize"
+      "$mod $alt_mod, j, exec, ${moveWindowScript} 100 d resize"
+      "$mod $alt_mod, k, exec, ${moveWindowScript} 100 u resize"
+      "$mod $alt_mod, l, exec, ${moveWindowScript} 100 r resize"
       ];
 
       bindm = [
@@ -106,7 +107,7 @@ in
         "$mod, W, exec, firefox"
 
         # Lock screen
-        "CTRL ALT, l, exec, hyprlock"
+        "$mod CTRL, l, exec, hyprlock"
 
         # Move focus
         "$mod, h, movefocus, l"

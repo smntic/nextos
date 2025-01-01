@@ -19,7 +19,7 @@
       kb_layout = "us";
       kb_variant = "";
       #kb_variant = "colemak_dh";
-      kb_options = "caps:escape";
+      kb_options = "caps:escape,altwin:swap_alt_win";
       repeat_rate = 30;
       repeat_delay = 300; 
     };
