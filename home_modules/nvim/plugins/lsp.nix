@@ -3,10 +3,11 @@
 {
   config = {
     home.packages = [
-      pkgs.pyright
       pkgs.clang-tools
-      pkgs.nil
       pkgs.elixir-ls
+      pkgs.haskell-language-server
+      pkgs.nil
+      pkgs.pyright
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -46,6 +47,7 @@
           'clangd',
           'pyright',
           'nil_ls',
+          'hls',
         }
 
         for _, server in ipairs(servers) do

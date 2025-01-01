@@ -4,6 +4,7 @@
   config = {
     home.packages = [
       pkgs.gcc
+      pkgs.ghc
       pkgs.elixir
     ];
 
@@ -21,17 +22,35 @@
           end
         end
 
+        local function term_build(cmd)
+          if vim.env.TMUX ~= nil then
+            local tmux_cmd = string.format('tmux send-keys -t 1 "%s" C-m', cmd)
+            vim.fn.system(tmux_cmd)
+          else
+            vim.api.nvim_command('! ' .. cmd)
+          end
+        end
+
         local build_functions = {
           cpp = function()
             local filename = vim.fn.expand('%:p')
             local output_filename = vim.fn.expand('%:p:r')
             local command = string.format(
-              -- 'g++ -DLOCAL -include /usr/include/c++/13.2/x86_64-unknown-linux-gnu/bits/stdc++.h -Wall -Wextra "%s" -o "%s"',
               'g++ -DLOCAL -Wall -Wextra "%s" -o "%s"',
               filename,
               output_filename
             )
-            vim.api.nvim_command('! ' .. command)
+            term_build(command)
+          end,
+          haskell = function()
+            local filename = vim.fn.expand('%:p')
+            local output_filename = vim.fn.expand('%:p:r')
+            local command = string.format(
+              'ghc "%s" -o "%s"',
+              filename,
+              output_filename
+            )
+            term_build(command)
           end,
         }
 
@@ -48,6 +67,10 @@
           elixir = function()
             local filename = vim.fn.expand('%:p')
             local cmd = string.format('elixir %s', filename)
+            term_exec(cmd)
+          end,
+          haskell = function()
+            local cmd = vim.fn.expand('%:p:r')
             term_exec(cmd)
           end,
         }
