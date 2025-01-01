@@ -6,6 +6,7 @@
       pkgs.pyright
       pkgs.clang-tools
       pkgs.nil
+      pkgs.elixir-ls
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -50,6 +51,11 @@
         for _, server in ipairs(servers) do
           setup_lsp(server)
         end
+
+        lspconfig.elixirls.setup({
+          capabilities = lsp_capabilities,
+          cmd = { "${pkgs.elixir-ls}/bin/elixir-ls" },
+        })
       ''
     ];
   };

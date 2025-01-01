@@ -4,6 +4,7 @@
   config = {
     home.packages = [
       pkgs.gcc
+      pkgs.elixir
     ];
 
     homeModules.nvim.lua = [
@@ -42,6 +43,11 @@
           python = function()
             local filename = vim.fn.expand('%:p')
             local cmd = string.format('python %s', filename)
+            term_exec(cmd)
+          end,
+          elixir = function()
+            local filename = vim.fn.expand('%:p')
+            local cmd = string.format('elixir %s', filename)
             term_exec(cmd)
           end,
         }

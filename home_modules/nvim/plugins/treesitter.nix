@@ -3,7 +3,8 @@
 {
   config = {
     programs.neovim.plugins = with pkgs.vimPlugins; [
-      render-markdown-nvim
+      nvim-treesitter.withAllGrammars
+      playground
     ];
   };
 }
