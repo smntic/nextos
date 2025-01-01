@@ -14,9 +14,6 @@
         -- Persistent undos
         undofile = true,
 
-        -- Clipboard
-        clipboard = "unnamedplus",
-
         -- Friendship ended with tabs. Now spaces are my best friend.
         expandtab = true,
         shiftwidth = 4,
