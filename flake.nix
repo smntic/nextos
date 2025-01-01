@@ -14,8 +14,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # Stylix (temporarily switching to my fork for KDE/QT support)
-    # stylix.url = "github:smnast/stylix";
-    stylix.url = "git+file:/home/simon/git/stylix";
+    stylix.url = "github:smnast/stylix";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

@@ -42,6 +42,7 @@
     qemu.enable = true;
     scons.enable = true;
     scrcpy.enable = true;
+    steam_run.enable = true;
     sxiv.enable = true;
     tree.enable = true;
     vlc.enable = true;

@@ -4,8 +4,8 @@
   config = {
     home.packages = [
       pkgs.pyright
-      pkgs.nil
       pkgs.clang-tools
+      pkgs.nil
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [

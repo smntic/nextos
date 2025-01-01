@@ -68,4 +68,8 @@
       grub.enable = false;
     };
   };
+
+  environment.variables = {
+    QT_FONT_DPI = 86;
+  };
 }
