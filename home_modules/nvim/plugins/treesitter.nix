@@ -7,5 +7,14 @@
       nvim-treesitter-parsers.elixir
       playground
     ];
+
+    homeModules.nvim.lua = [
+      ''
+        treesitter_configs = require('nvim-treesitter.configs')
+        treesitter_configs.setup({
+          highlight = { enable = true, },
+        })
+      ''
+    ];
   };
 }
