@@ -8,6 +8,7 @@
       pkgs.haskell-language-server
       pkgs.nil
       pkgs.pyright
+      pkgs.rust-analyzer
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -45,9 +46,10 @@
 
         local servers = {
           'clangd',
-          'pyright',
-          'nil_ls',
           'hls',
+          'nil_ls',
+          'pyright',
+          'rust_analyzer',
         }
 
         for _, server in ipairs(servers) do

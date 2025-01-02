@@ -40,6 +40,7 @@
     psmisc.enable = true;
     python.enable = true;
     qemu.enable = true;
+    rust.enable = true;
     scons.enable = true;
     scrcpy.enable = true;
     steam_run.enable = true;

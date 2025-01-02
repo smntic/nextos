@@ -3,9 +3,10 @@
 {
   config = {
     home.packages = [
+      pkgs.cargo
+      pkgs.elixir
       pkgs.gcc
       pkgs.ghc
-      pkgs.elixir
     ];
 
     homeModules.nvim.lua = [
@@ -52,6 +53,10 @@
             )
             term_build(command)
           end,
+          rust = function()
+            local command = 'cargo build'
+            term_build(command)
+          end,
         }
 
         local run_functions = {
@@ -72,6 +77,10 @@
           haskell = function()
             local cmd = vim.fn.expand('%:p:r')
             term_exec(cmd)
+          end,
+          rust = function()
+            local cmd = 'cargo run'
+            term_build(cmd)
           end,
         }
 
