@@ -4,8 +4,8 @@
   config.homeModules.nvim.lua = [
     ''
       -- Yank/Delete all text
-      vim.keymap.set('n', '<leader>D', '<cmd>%d<cr>', { desc = 'General | Delete all text', silent = true })
-      vim.keymap.set('n', '<leader>y', '<cmd>%y+<cr>', { desc = 'General | Yank all text', silent = true })
+      vim.keymap.set('n', '<leader>d%', '<cmd>%d<cr>', { desc = 'General | Delete all text', silent = true })
+      vim.keymap.set('n', '<leader>y%', '<cmd>%y+<cr>', { desc = 'General | Yank all text', silent = true })
 
       -- Inverse tab
       vim.keymap.set('i', '<S-Tab>', '<C-d>', { desc = 'General | Inverse tab', silent = true })
