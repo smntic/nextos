@@ -65,8 +65,9 @@
             term_exec(cmd)
           end,
           python = function()
+            local foldername = vim.fn.expand('%:p:h')
             local filename = vim.fn.expand('%:p')
-            local cmd = string.format('python %s', filename)
+            local cmd = string.format('cd %s && python %s', foldername, filename)
             term_exec(cmd)
           end,
           elixir = function()

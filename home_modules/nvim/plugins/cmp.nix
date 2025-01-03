@@ -18,6 +18,10 @@
       ''
         local cmp = require('cmp')
         cmp.setup({
+          completion = {
+            autocomplete = false,
+          },
+
           sources = {
             { name = 'nvim_lsp' },
             { name = 'nvim_lua' },
@@ -28,10 +32,21 @@
           },
 
           mapping = cmp.mapping.preset.insert({
-            ['<C-k>'] = cmp.mapping.select_prev_item(),
-            ['<C-j>'] = cmp.mapping.select_next_item(),
+            ['<C-k>'] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              else
+                cmp.complete()
+              end
+            end),
+            ['<C-j>'] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                cmp.complete()
+              end
+            end),
             ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-            ['<C-Space>'] = cmp.mapping.complete(),
           }),
 
           snippet = {
