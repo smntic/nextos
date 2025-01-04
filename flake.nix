@@ -15,6 +15,9 @@
 
     # Stylix (temporarily switching to my fork for KDE/QT support)
     stylix.url = "github:smnast/stylix";
+
+    # cp-tool (my own competitive programming tool)
+    cp-tool.url = "github:smnast/cp-tool";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

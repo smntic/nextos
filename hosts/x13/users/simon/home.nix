@@ -1,8 +1,9 @@
-{ config, ... }:
+{ config, hostRoot, ... }:
 
 {
   homeModules = {
     bluetui.enable = true;
+    cp-tool.enable = true;
     firefox.enable = true;
     gammastep.enable = true;
     hypridle.enable = true;
@@ -25,6 +26,8 @@
       rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#x13";
       update = "sudo sh -c 'nix flake update --flake /etc/nixos && nixos-rebuild switch --flake /etc/nixos#x13'";
       garbage = "sudo nix-collect-garbage -d --delete-older-than 14d";
+
+      cpt = "source cpt -t=${hostRoot}/assets/cp/template";
     };
 
     git = {
