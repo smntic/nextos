@@ -8,7 +8,7 @@ let
     # Skip unpack phase as there is no source to unpack
     dontUnpack = true;
 
-    buildPhase = ''
+    installPhase = ''
       mkdir -p $out
       export BITS_PATH=${pkgs.gcc.cc}/include/c++/${pkgs.gcc.version}/$(gcc -dumpmachine)/bits/
       cp $BITS_PATH/stdc++.h $out/

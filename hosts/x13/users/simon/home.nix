@@ -13,7 +13,7 @@
     kitty.enable = true;
     mako.enable = true;
     nvim.enable = true;
-    precomp-bits.enable = false; # i'm coming back later...
+    precomp-bits.enable = true; # i'm coming back later...
     rofi.enable = true;
     tmux.enable = true;
     waybar.enable = true;
