@@ -35,6 +35,7 @@
     neofetch.enable = true;
     netcat.enable = true;
     ninja.enable = true;
+    nix-inspect.enable = true;
     nvim.enable = true;
     obs.enable = true;
     pnpm.enable = true;

@@ -37,12 +37,11 @@
 
   config = {
     xdg = {
-      userDirs = lib.mkIf config.homeModules.xdg.userDirs.enable {
-        enable = true;
+      userDirs = config.homeModules.xdg.userDirs.directories // {
+        enable = config.homeModules.xdg.userDirs.enable;
         createDirectories = true;
-
         extraConfig = config.homeModules.xdg.userDirs.extraDirectories;
-      } // config.homeModules.xdg.userDirs.directories;
+      };
 
       mimeApps = lib.mkIf config.homeModules.xdg.mimeApps.enable {
         enable = true;

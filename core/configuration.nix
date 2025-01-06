@@ -16,6 +16,7 @@
     "${root}/modules/images.nix"
     "${root}/modules/languages.nix"
     "${root}/modules/network.nix"
+    "${root}/modules/nix_tools.nix"
     "${root}/modules/printing.nix"
     "${root}/modules/reverse_engineering.nix"
     "${root}/modules/server.nix"

@@ -18,6 +18,8 @@
 
     # cp-tool (my own competitive programming tool)
     cp-tool.url = "github:smnast/cp-tool";
+
+    nix-inspect.url = "github:bluskript/nix-inspect";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
