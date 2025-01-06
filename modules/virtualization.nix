@@ -3,8 +3,10 @@
 {
   imports = [
     ./virtualization/docker.nix
-    ./virtualization/steam_run.nix
+    ./virtualization/libvirt.nix
     ./virtualization/qemu.nix
+    ./virtualization/steam_run.nix
+    ./virtualization/virt_manager.nix
     ./virtualization/wine.nix
   ];
 }

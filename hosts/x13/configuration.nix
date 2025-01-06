@@ -30,6 +30,7 @@
     kdeconnect.enable = true;
     krita.enable = true;
     libreoffice.enable = true;
+    libvirt.enable = true;
     make.enable = true;
     neofetch.enable = true;
     netcat.enable = true;
@@ -46,6 +47,7 @@
     steam_run.enable = true;
     sxiv.enable = true;
     tree.enable = true;
+    virt-manager.enable = true;
     vlc.enable = true;
     wget.enable = true;
     ytdlp.enable = true;

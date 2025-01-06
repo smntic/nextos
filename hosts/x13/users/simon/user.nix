@@ -5,6 +5,6 @@
     # https://xkcd.com/936/
     initialPassword = "correctHorseBatteryStaple";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
   };
 }
