@@ -48,6 +48,7 @@
     steam_run.enable = true;
     sxiv.enable = true;
     tree.enable = true;
+    valgrind.enable = true;
     virt-manager.enable = true;
     vlc.enable = true;
     wget.enable = true;
