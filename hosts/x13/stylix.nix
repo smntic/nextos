@@ -18,7 +18,7 @@
     enable = true;
 
     # Wallpaper
-    image = ./assets/wallpapers/forest.png;
+    image = ./assets/wallpapers/red_storm.jpg;
 
     # Currently, accessing these properties from config does not work if they are not strings.
     # Thus, I copied these values from "tokyo-city-terminal-dark" (base16).
