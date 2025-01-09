@@ -20,9 +20,14 @@
     cp-tool.url = "github:smnast/cp-tool";
 
     nix-inspect.url = "github:bluskript/nix-inspect";
+
+    kmonad = {
+      url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, kmonad, ... }@inputs:
     let
       file = import ./lib/helpers/file.nix;
     in

@@ -14,6 +14,7 @@
     "${root}/modules/editors.nix"
     "${root}/modules/game_development.nix"
     "${root}/modules/images.nix"
+    "${root}/modules/input.nix"
     "${root}/modules/languages.nix"
     "${root}/modules/network.nix"
     "${root}/modules/nix_tools.nix"
