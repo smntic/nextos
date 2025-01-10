@@ -4,7 +4,7 @@
 
 {
   imports = [
-    ./kmonad.nix
+    # ./kmonad.nix
     ./stylix.nix
   ];
 
@@ -27,6 +27,7 @@
     godot.enable = true;
     grub.enable = true;
     htop.enable = true;
+    i3.enable = true;
     java.enable = true;
     kdeconnect.enable = true;
     krita.enable = true;
@@ -69,6 +70,18 @@
     hyprland = {
       enable = true;
       withUWSM = true;
+    };
+
+    key-repeat = {
+      enable = true;
+      delay = 300;
+      interval = 30;
+    };
+
+    libinput = {
+      enable = true;
+      naturalScrolling = true;
+      mouseAcceleration = false;
     };
 
     networkmanager = {
