@@ -4,7 +4,7 @@
 
 {
   imports = [
-    # ./kmonad.nix
+    ./kmonad.nix
     ./stylix.nix
   ];
 
