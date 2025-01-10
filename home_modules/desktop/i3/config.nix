@@ -52,7 +52,7 @@
       config = {
         startup = [
           { command = "--no-startup-id picom -b"; always = true; }
-          { command = "--no-startup-id redshift"; always = false; }
+          { command = "--no-startup-id killall redshift; redshift"; always = false; }
           { command = "--no-startup-id greenclip daemon"; always = false; }
           { command = "--no-startup-id dunst"; always = false; }
           { command = "--no-startup-id feh --bg-fill ${config.stylix.image}"; always = true; }

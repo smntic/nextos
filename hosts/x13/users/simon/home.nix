@@ -18,6 +18,7 @@
     nvim.enable = true;
     picom.enable = true;
     precomp-bits.enable = true;
+    redshift.enable = true;
     rofi.enable = true;
     tmux.enable = true;
     waybar.enable = true;
