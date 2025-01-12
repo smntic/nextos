@@ -7,6 +7,7 @@
     pkgs.xss-lock
     pkgs.haskellPackages.greenclip
     pkgs.i3lock-color
+    pkgs.maim
   ];
 
   xsession.windowManager.i3 = let
@@ -82,7 +83,7 @@
           "${mod}+d" = "exec --no-startup-id rofi -show drun";
 
           # Take a screenshot
-          "${mod}+${print}" = "exec --no-startup-id maim -slB --color=1,1,1,0.4 --bordersize=1 | xclip -selection clipboard -t image/png";
+          "${mod}+p" = "exec --no-startup-id \"maim -slB --color=1,1,1,0.4 | xclip -selection clipboard -t image/png\"";
 
           # Emoji keyboard
           "${mod}+period" = "exec --no-startup-id rofimoji --max-recent 0";
