@@ -3,10 +3,10 @@
 {
   options = {
     homeModules.python.packages = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      description = "Names of Python packages to install.";
-      example = "[ \"numpy\" ]";
-      default = [];
+      type = lib.types.functionTo (lib.types.listOf lib.types.package);
+      description = "Lambda mapping from package to names of python packages to install.";
+      example = "p: with p; [ numpy ]";
+      default = p: [];
     };
   };
 
@@ -14,9 +14,7 @@
     home.packages = [
       # Magic trick:
       (pkgs.python3.withPackages
-        (p:
-          config.homeModules.python.packages
-        )
+        config.homeModules.python.packages
       )
     ];
   };
