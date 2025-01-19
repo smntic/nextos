@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./virtualization/appimage_run.nix
     ./virtualization/docker.nix
     ./virtualization/libvirt.nix
     ./virtualization/qemu.nix

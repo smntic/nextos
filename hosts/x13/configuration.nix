@@ -14,6 +14,7 @@
 
   # Module configuration
   modules = {
+    appimage-run.enable = true;
     bear.enable = true;
     blender.enable = true;
     bluetooth.enable = true;
