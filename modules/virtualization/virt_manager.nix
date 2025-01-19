@@ -9,5 +9,6 @@
     environment.systemPackages = [
       pkgs.virt-manager
     ];
+    virtualisation.spiceUSBRedirection.enable = true;
   };
 }
