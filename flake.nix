@@ -45,7 +45,9 @@
               # Use nixpkgs with unfree software (requires system platform)
               pkgs = import nixpkgs {
                 system = system;
-                config.allowUnfree = true;
+                config = {
+                  allowUnfree = true;
+                };
               };
             in
               nixpkgs.lib.nixosSystem rec {

@@ -7,6 +7,7 @@
     "${root}/modules/bootloader.nix"
     "${root}/modules/browsers.nix"
     "${root}/modules/build_tools.nix"
+    "${root}/modules/cad.nix"
     "${root}/modules/compression.nix"
     "${root}/modules/debugging.nix"
     "${root}/modules/desktop.nix"
