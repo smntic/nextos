@@ -58,7 +58,7 @@
       wandb             # Weights & Biases for experiment tracking
 
       # Optimization & Reinforcement Learning
-      stable-baselines3 # Reinforcement learning library based on PyTorch
+      # stable-baselines3 # Reinforcement learning library based on PyTorch
       gymnasium         # Gymnasium, RL environment toolkit
       mujoco            # Physics engine for robotics and reinforcement learning
 

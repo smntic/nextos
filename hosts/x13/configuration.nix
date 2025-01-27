@@ -25,7 +25,7 @@
     gcc.enable = true;
     gdb.enable = true;
     ghidra.enable = true;
-    godot.enable = true;
+    godot.enable = false;
     grub.enable = true;
     htop.enable = true;
     i3.enable = true;
