@@ -12,5 +12,6 @@
     kb-remove-char-back = "BackSpace";
     kb-cancel = "Escape,Control+c";
     kb-mode-complete = ""; # Otherwise bound to Control+l
+    kb-secondary-copy = ""; # Otherwise bound to Control+c
   };
 }
