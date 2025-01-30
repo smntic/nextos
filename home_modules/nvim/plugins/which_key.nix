@@ -15,6 +15,7 @@
           { '<leader>h', group = 'Harpoon', icon = '󰛢 ' },
           { '<leader>l', group = 'LSP', icon = '󰌵 ' },
           { '<leader>n', group = 'Neovim', icon = ' ' },
+          { '<leader>t', group = 'VimTeX', icon = ' ' },
         })
       ''
     ];
