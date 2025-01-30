@@ -24,6 +24,11 @@
       # Fix for suggestion font color in tmux (https://github.com/zsh-users/zsh-autosuggestions/issues/229)
       export TERM=xterm-256color
 
+      # fzf widget to cd to a directory in ~/dev/
+      fzf-cd-dev-widget() {
+        cd $(find ~/dev -type d | fzf --layout=reverse --height 40%) && zle accept-line
+      }
+
       # fzf widget to automatically run history item after accepting
       fzf-auto-history-widget() {
         fzf-history-widget && zle accept-line
@@ -47,6 +52,7 @@
       }
 
       # Create the widgets
+      zle -N fzf-cd-dev-widget
       zle -N fzf-auto-history-widget
       zle -N fzf-auto-file-widget
       zle -N run-tmux-widget
@@ -54,6 +60,7 @@
 
       # fzf cd bindings
       bindkey '^F' fzf-cd-widget
+      bindkey '^[f' fzf-cd-dev-widget
 
       # fzf history bindings
       bindkey '^R' fzf-auto-history-widget
@@ -65,7 +72,7 @@
 
       # Quick program bindings
       bindkey '^[[116;6u' run-tmux-widget
-      bindkey '^[f' run-yazi-widget
+      bindkey '^[e' run-yazi-widget
 
       # Delete forward
       bindkey '\e[3~' delete-char
