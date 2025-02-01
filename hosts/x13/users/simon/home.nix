@@ -20,6 +20,7 @@
     precomp-bits.enable = true;
     redshift.enable = true;
     rofi.enable = true;
+    sway.enable = true;
     tmux.enable = true;
     waybar.enable = true;
     yazi.enable = true;
@@ -28,6 +29,9 @@
     aliases = {
       hypr = "uwsm start -S hyprland-uwsm.desktop";
       hyprexit = "uwsm stop";
+
+      sway = "SHELL=zsh sway";
+      swayexit = "pkill wl-clip-persist && sway exit";
 
       rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#x13";
       update = "sudo sh -c 'nix flake update --flake /etc/nixos && nixos-rebuild switch --flake /etc/nixos#x13'";

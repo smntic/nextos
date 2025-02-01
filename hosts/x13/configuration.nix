@@ -49,6 +49,7 @@
     scons.enable = true;
     scrcpy.enable = true;
     steam_run.enable = true;
+    sway.enable = true;
     sxiv.enable = true;
     tree.enable = true;
     valgrind.enable = true;

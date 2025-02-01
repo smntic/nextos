@@ -17,6 +17,7 @@
     ./desktop/picom.nix
     ./desktop/redshift.nix
     ./desktop/rofi.nix
+    ./desktop/sway.nix
     ./desktop/waybar.nix
     ./desktop/yazi.nix
   ];
