@@ -14,7 +14,7 @@
 
       colors = {
         activeWorkspace = rec {
-          background = "#${config.lib.stylix.colors.base03}40";
+          background = "#${config.lib.stylix.colors.base03}70";
           border = background;
           text = "#${config.lib.stylix.colors.base05}";
         };

@@ -3,7 +3,7 @@
 {
   modules.kmonad = {
     enable = true;
-    keyboards = {
+    keyboards = rec {
       builtin = {
         device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
         config = ''
@@ -78,6 +78,10 @@
           #   _    _    _                _                _    _    _   
           # )
         # '';
+      };
+
+      external = builtin // {
+        device = "/dev/input/by-path/pci-0000:c3:00.3-usb-0:2.2:1.0-event-kbd";
       };
     };
   };

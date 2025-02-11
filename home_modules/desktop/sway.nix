@@ -6,6 +6,7 @@
     ./sway/bars.nix
     ./sway/config.nix
     ./sway/input.nix
+    ./sway/output.nix
   ];
 
   options = {
