@@ -19,5 +19,6 @@
       enable = true;
       keyboards = config.modules.kmonad.keyboards;
     };
+    systemd.services.kmonad.serviceConfig.Restart = "no";
   };
 }

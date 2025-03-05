@@ -26,7 +26,7 @@
 
       # fzf widget to cd to a directory in ~/dev/
       fzf-cd-dev-widget() {
-        cd $(find ~/dev -type d | fzf --layout=reverse --height 40%) && zle accept-line
+        cd $(find ~/dev ~/git -type d -follow | fzf --layout=reverse --height 40%) && zle accept-line
       }
 
       # fzf widget to automatically run history item after accepting

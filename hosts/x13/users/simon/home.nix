@@ -16,7 +16,6 @@
     kitty.enable = true;
     mako.enable = true;
     nvim.enable = true;
-    picom.enable = true;
     precomp-bits.enable = true;
     redshift.enable = true;
     rofi.enable = true;

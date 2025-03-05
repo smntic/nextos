@@ -18,5 +18,9 @@
       repeat_delay = "300";
       repeat_rate = "30";
     };
+
+    # "type:tablet" = {
+    #   map_to_output = "\"Dell Inc. DELL 2009W KM509834DJ0U\"";
+    # };
   };
 }
