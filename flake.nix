@@ -14,10 +14,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # Stylix (temporarily switching to my fork for KDE/QT support)
-    stylix.url = "github:smnast/stylix";
+    stylix.url = "github:smntic/stylix";
 
     # cp-tool (my own competitive programming tool)
-    cp-tool.url = "github:smnast/cp-tool";
+    cp-tool.url = "github:smntic/cp-tool";
 
     nix-inspect.url = "github:bluskript/nix-inspect";
 

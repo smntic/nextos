@@ -4,7 +4,7 @@ This is a work-in-progress NixOS configuration.
 ## Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/smnast/nextos
+git clone https://github.com/smntic/nextos
 ```
 2. Change directory
 ```bash

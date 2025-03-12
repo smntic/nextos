@@ -106,13 +106,13 @@
       "locked": {
         "lastModified": 1736006672,
         "narHash": "sha256-jeWf7A5TExjwIg00jXtMKL3jye/MFgkCQrTnnluSxtY=",
-        "owner": "smnast",
+        "owner": "smntic",
         "repo": "cp-tool",
         "rev": "8f5dd5abe4da2da52125c31a64713f84a7c9d356",
         "type": "github"
       },
       "original": {
-        "owner": "smnast",
+        "owner": "smntic",
         "repo": "cp-tool",
         "type": "github"
       }
@@ -985,13 +985,13 @@
       "locked": {
         "lastModified": 1735708400,
         "narHash": "sha256-JXFcIc0H9Y2JHZf4URqeisbxBfytASIgd+LEbC14KsI=",
-        "owner": "smnast",
+        "owner": "smntic",
         "repo": "stylix",
         "rev": "ebd44bcfa061958c3ddd51252056d348c6ed8ecb",
         "type": "github"
       },
       "original": {
-        "owner": "smnast",
+        "owner": "smntic",
         "repo": "stylix",
         "type": "github"
       }
