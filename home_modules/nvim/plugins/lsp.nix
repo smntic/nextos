@@ -9,6 +9,7 @@
       pkgs.nil
       pkgs.pyright
       pkgs.rust-analyzer
+      pkgs.typescript-language-server
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -50,6 +51,7 @@
           'nil_ls',
           'pyright',
           'rust_analyzer',
+          'ts_ls',
         }
 
         for _, server in ipairs(servers) do
