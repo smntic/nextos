@@ -10,6 +10,7 @@
       pkgs.pyright
       pkgs.rust-analyzer
       pkgs.typescript-language-server
+      pkgs.vscode-langservers-extracted
     ];
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -48,6 +49,7 @@
         local servers = {
           'clangd',
           'hls',
+          'html',
           'nil_ls',
           'pyright',
           'rust_analyzer',
