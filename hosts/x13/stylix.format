@@ -1,0 +1,16 @@
+base00 = "$$BACKGROUND$$";
+base01 = "$$BACKGROUND.lighten(5)$$";
+base02 = "$$BACKGROUND.lighten(10)$$";
+base03 = "$$BACKGROUND.lighten(40)$$";
+base04 = "$$BACKGROUND.lighten(50)$$";
+base05 = "$$FOREGROUND.darken(10)$$";
+base06 = "$$FOREGROUND.lighten(5)$$";
+base07 = "$$FOREGROUND.lighten(10)$$";
+base08 = "$$ERROR$$";
+base09 = "$$WARNING$$";
+base0A = "$$COLOR8$$";
+base0B = "$$GOOD$$";
+base0C = "$$INFO$$";
+base0D = "$$ACCENT$$";
+base0E = "$$ERROR$$";
+base0F = "$$COLOR10$$";

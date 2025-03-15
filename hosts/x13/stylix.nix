@@ -18,32 +18,30 @@
     enable = true;
 
     # Wallpaper
-    image = ./assets/wallpapers/red_storm.jpg;
+    image = ./assets/wallpapers/sunset_torii.jpg;
 
-    # Currently, accessing these properties from config does not work if they are not strings.
-    # Thus, I copied these values from "tokyo-city-terminal-dark" (base16).
     base16Scheme = {
-      base00 = "#171D23";
-      base01 = "#1D252C";
-      base02 = "#28323A";
-      base03 = "#526270";
-      base04 = "#B7C5D3";
-      base05 = "#D8E2EC";
-      base06 = "#F6F6F8";
-      base07 = "#FBFBFD";
-      base08 = "#D95468";
-      base09 = "#FF9E64";
-      base0A = "#EBBF83";
-      base0B = "#8BD49C";
-      base0C = "#70E1E8";
-      base0D = "#539AFC";
-      base0E = "#B62D65";
-      base0F = "#DD9D82";
+      base00 = "#0f1423";
+      base01 = "#171f34";
+      base02 = "#1f2946";
+      base03 = "#4f67af";
+      base04 = "#7285bf";
+      base05 = "#b8c2df";
+      base06 = "#edeff7";
+      base07 = "#ffffff";
+      base08 = "#e4b1b1";
+      base09 = "#dbb896";
+      base0A = "#6573bf";
+      base0B = "#96db96";
+      base0C = "#9696db";
+      base0D = "#f9a29e";
+      base0E = "#e4b1b1";
+      base0F = "#c5abb5";
     };
 
     opacity = {
-      desktop = 0.5;
-      terminal = 0.8;
+      desktop = 0.4;
+      terminal = 0.95;
     };
 
     cursor = {
