@@ -8,7 +8,7 @@
 
     homeModules.nvim.lua = [
       ''
-        vim.keymap.set('n', '<leader>m', vim.cmd.MarkdownPreviewToggle, { desc = 'MarkdownPreview | Toggle', silent = true })
+        vim.keymap.set('n', '<leader>M', vim.cmd.MarkdownPreviewToggle, { desc = 'MarkdownPreview | Toggle', silent = true })
       ''
     ];
   };

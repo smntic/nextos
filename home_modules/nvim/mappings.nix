@@ -88,6 +88,9 @@
 
       -- Toggle terminal
       vim.keymap.set('n', '<leader>nt', '<cmd>ToggleTerm<CR>', { desc = 'General | Toggle Terminal', silent = true })
+
+      -- Mark
+      vim.keymap.set('n', '<leader>m', '`', { desc = 'General | Marks Shortcut', silent = true })
     ''
   ];
 }
