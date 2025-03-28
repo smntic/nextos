@@ -51,6 +51,10 @@
         zle redisplay
       }
 
+      mkcd() {
+        mkdir -p "$1" && cd "$1"
+      }
+
       # Create the widgets
       zle -N fzf-cd-dev-widget
       zle -N fzf-auto-history-widget
