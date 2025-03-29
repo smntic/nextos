@@ -18,6 +18,7 @@
     bear.enable = true;
     blender.enable = true;
     bluetooth.enable = true;
+    cheat-sh.enable = true;
     cloc.enable = true;
     cmake.enable = true;
     docker.enable = true;
