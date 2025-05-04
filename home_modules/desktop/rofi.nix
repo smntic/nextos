@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   imports = [
@@ -12,6 +12,12 @@
   };
 
   config = lib.mkIf config.homeModules.rofi.enable {
-    programs.rofi.enable = true;
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      extraConfig = {
+        monitor = -1;
+      };
+    };
   };
 }
