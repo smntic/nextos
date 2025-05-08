@@ -15,7 +15,6 @@
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
-      luasnip
     ];
 
     homeModules.nvim.lua = [
@@ -38,7 +37,7 @@
         })
 
         local lspconfig = require('lspconfig')
-        local ls_capabilities = require('cmp_nvim_lsp').default_capabilities()
+        local ls_capabilities = require('blink.cmp').get_lsp_capabilities()
 
         local setup_lsp = function(server)
           lspconfig[server].setup({
