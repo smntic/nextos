@@ -7,7 +7,7 @@
       tap = "enabled";
       middle_emulation = "enabled";
       natural_scroll = "enabled";
-      scroll_factor = "0.3";
+      scroll_factor = "0.6";
     };
     
     "type:pointer" = {
