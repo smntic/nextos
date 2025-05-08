@@ -22,8 +22,13 @@
     nix-inspect.url = "github:bluskript/nix-inspect";
 
     kmonad = {
-      url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
+      url = "github:kmonad/kmonad?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # nvim plugin blink (nixpkgs version is *very* outdated)
+    blink = {
+      url = "github:Saghen/blink.cmp";
     };
   };
 
