@@ -20,8 +20,8 @@
       };
 
       # Specify the times to align with my sleep "schedule"
-      dawnTime = "6:00-7:00";
-      duskTime = "21:00-22:00";
+      dawnTime = "5:00-6:00";
+      duskTime = "20:30-21:30";
     };
   };
 }
