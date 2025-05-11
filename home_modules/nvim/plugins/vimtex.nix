@@ -3,7 +3,7 @@
 {
   config = {
     home.packages = [
-      pkgs.texliveMedium
+      pkgs.texlive.combined.scheme-full
       pkgs.zathura
     ];
 
