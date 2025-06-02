@@ -65,6 +65,37 @@
           )
         '';
       };
+
+      csil = {
+        device = "/dev/input/by-id/usb-413c_Dell_KB216_Wired_Keyboard-event-kbd";
+        config = ''
+          (defcfg
+            input (device-file "/dev/input/by-id/usb-413c_Dell_KB216_Wired_Keyboard-event-kbd")
+            output (uinput-sink "uinput")
+
+            cmp-seq ralt
+            cmp-seq-delay 5
+
+            fallthrough true
+          )
+
+          (defsrc
+            grv   1    2    3    4    5    6    7    8    9    0    -    =     bspc
+            tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
+            caps    a    s    d    f    g    h    j    k    l    ;    '        ret
+            lsft     z    x    c    v    b    n    m    ,    .    /            rsft
+            lctl lmet lalt             spc              ralt sys  rctl
+          )
+
+          (deflayer qwerty
+           grv   1    2    3    4    5    6    7    8    9    0    -    =     bspc
+           tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
+           esc     a    s    d    f    g    h    j    k    l    ;    '        ret
+           lsft     z    x    c    v    b    n    m    ,    .     /           rsft
+           lctl lalt lmet             spc              rmet ralt rctl
+          )
+        '';
+      };
     };
   };
 
