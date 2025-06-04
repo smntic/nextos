@@ -37,6 +37,8 @@
       garbage = "sudo nix-collect-garbage -d --delete-older-than 14d";
 
       cpt = "source cpt -t=${hostRoot}/assets/cp/template";
+
+      ls = "ls --hyperlink=auto --color=auto";
     };
 
     git = {

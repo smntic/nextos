@@ -83,8 +83,26 @@
       vim.keymap.set('n', '<leader>K', '<cmd>lnext<CR>zz', { desc = 'General | Quickfix next in location list', silent = true })
       vim.keymap.set('n', '<leader>J', '<cmd>lprev<CR>zz', { desc = 'General | Quickfix prev in location list', silent = true })
 
-      -- netrw
-      vim.keymap.set('n', '<leader>nf', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw', silent = true })
+      -- netrw (open to top)
+      vim.keymap.set('n', '<leader>nF', '<cmd>Ex<CR>', { desc = 'Neovim | Open netrw to top', silent = true })
+
+      -- netrw (open with cursor on current file)
+      -- credits to: https://www.reddit.com/r/neovim/comments/14e59ub/i_wrote_a_function_that_moves_the_cursor_to_the/
+      vim.keymap.set('n', '<leader>nf',
+        function()
+          local cur_file = vim.fn.expand('%:t')
+          vim.cmd.Ex()
+
+          local starting_line = 8 -- line number of the first file
+          local lines = vim.api.nvim_buf_get_lines(0, starting_line, -1, false)
+          for i, file in ipairs(lines) do
+            if file:find(cur_file) then
+              vim.api.nvim_win_set_cursor(0, { starting_line + i, 0 })
+              return
+            end
+          end
+        end
+      , { desc = 'Neovim | Open netrw to current file', silent = true })
 
       -- Toggle terminal
       vim.keymap.set('n', '<leader>nt', '<cmd>ToggleTerm<CR>', { desc = 'General | Toggle Terminal', silent = true })

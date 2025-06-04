@@ -30,6 +30,11 @@
     blink = {
       url = "github:Saghen/blink.cmp";
     };
+
+    # nixpkgs version doesn't work with keymaps.toml... who knows why. yes i did spend an hour debugging this.
+    yazi = {
+      url = "github:sxyazi/yazi";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, kmonad, ... }@inputs:
