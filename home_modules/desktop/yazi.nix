@@ -26,7 +26,7 @@
         mgr.prepend_keymap = [
           {
             on = [ "R" ];
-            run = "shell 'ripdrag \"$@\" -x 2>/dev/null &' --confirm";
+            run = "shell 'ripdrag \"$@\" 2>/dev/null &' --confirm";
             desc = "Ripdrag: Select current file";
           }
         ];
