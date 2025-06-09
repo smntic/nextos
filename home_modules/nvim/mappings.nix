@@ -92,11 +92,14 @@
         function()
           local cur_file = vim.fn.expand('%:t')
           vim.cmd.Ex()
+          print(cur_file)
 
           local starting_line = 8 -- line number of the first file
           local lines = vim.api.nvim_buf_get_lines(0, starting_line, -1, false)
+          print(lines)
           for i, file in ipairs(lines) do
-            if file:find(cur_file) then
+            -- 1 is the start index, true disables special pattern matching characters
+            if file:find(cur_file, 1, true) then
               vim.api.nvim_win_set_cursor(0, { starting_line + i, 0 })
               return
             end
