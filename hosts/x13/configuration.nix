@@ -92,6 +92,13 @@
       waitForOnline = false;
     };
 
+    retroarch = {
+      enable = true;
+      cores = with pkgs.libretro; [
+        stella
+      ];
+    };
+
     wine = {
       enable = true;
       waylandSupport = true;

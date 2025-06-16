@@ -13,6 +13,7 @@
     "${root}/modules/desktop.nix"
     "${root}/modules/documents.nix"
     "${root}/modules/editors.nix"
+    "${root}/modules/emulation.nix"
     "${root}/modules/game_development.nix"
     "${root}/modules/images.nix"
     "${root}/modules/input.nix"
