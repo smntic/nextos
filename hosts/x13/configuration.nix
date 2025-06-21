@@ -42,6 +42,7 @@
     nix-inspect.enable = true;
     nvim.enable = true;
     obs.enable = true;
+    openfortivpn.enable = true;
     pnpm.enable = true;
     psmisc.enable = true;
     python.enable = true;
