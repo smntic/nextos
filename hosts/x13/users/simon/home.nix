@@ -44,7 +44,7 @@
     git = {
       enable = true;
       name = "Simon Ashton";
-      email = "simonashton.dev@gmail.com";
+      email = "simon@smntic.dev";
     };
 
     xdg = {

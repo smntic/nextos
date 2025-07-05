@@ -2,10 +2,10 @@
   description = "nextOS Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
 
       # Reduce disk usage
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,7 +14,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # Stylix (temporarily switching to my fork for KDE/QT support)
-    stylix.url = "github:smntic/stylix";
+    # stylix.url = "github:smntic/stylix";
+    stylix.url = "github:nix-community/stylix/release-25.05";
 
     # cp-tool (my own competitive programming tool)
     cp-tool.url = "github:smntic/cp-tool";
@@ -61,6 +62,9 @@
                     "dotnet-sdk-6.0.428"
                   ];
                 };
+                overlays = [
+                  (import ./overlays/linux-firmware.nix)
+                ];
               };
             in
               nixpkgs.lib.nixosSystem rec {
@@ -73,6 +77,9 @@
                 };
 
                 modules = [
+                  # From evaluation warning about overriding nixpkgs
+                  "${nixpkgs}/nixos/modules/misc/nixpkgs/read-only.nix"
+
                   # Include the configuration.nix and hardware-configuration.nix for each host
                   ./core/configuration.nix
                   ./hosts/${hostName}/configuration.nix
@@ -100,6 +107,9 @@
                 # Include the user.nix file for each user of this host
                 ++ file.listForFile ./hosts/${hostName}/users (userName:
                   ./hosts/${hostName}/users/${userName}/user.nix);
+
+                # (Doesn't) Suppress warning about overriding nixpkgs (i don't know how to do this)
+                # nixpkgs.pkgs = pkgs;
               };
           });
       };

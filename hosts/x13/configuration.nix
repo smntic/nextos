@@ -95,7 +95,7 @@
 
     retroarch = {
       enable = true;
-      cores = with pkgs.libretro; [
+      cores = cores: with cores; [
         stella
       ];
     };
