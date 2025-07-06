@@ -7,7 +7,7 @@
     git = {
       enable = true;
       name = "Simon Ashton";
-      email = "simon@smntic.dev";
+      email = "simonashton.dev@gmail.com";
     };
   };
 

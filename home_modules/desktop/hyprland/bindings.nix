@@ -57,8 +57,7 @@ in
     home.packages = [
       pkgs.jq
       pkgs.hyprshot
-      # (pkgs.rofimoji.override { rofi = pkgs.rofi-wayland; })
-      pkgs.rofimoji
+      (pkgs.rofimoji.override { rofi = pkgs.rofi-wayland; })
       pkgs.cliphist
       pkgs.brightnessctl
     ];

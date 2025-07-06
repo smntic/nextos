@@ -11,7 +11,7 @@
 
   fonts.packages = [
     pkgs.noto-fonts
-    pkgs.nerd-fonts.symbols-only
+    (pkgs.nerdfonts.override { fonts = ["NerdFontsSymbolsOnly"]; })
   ];
 
   stylix = {
@@ -45,7 +45,6 @@
     };
 
     cursor = {
-      package = pkgs.capitaine-cursors;
       name = "capitaine-cursors";
       size = 16;
     };

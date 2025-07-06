@@ -19,6 +19,5 @@
       (extension "600-sound-volume" "{c4b582ec-4343-438c-bda2-2f691c16c262}")
       (extension "youtube-recommended-videos" "myallychou@gmail.com")
       (extension "detach-tab" "claymont@mail.com_detach-tab")
-      (extension "carrot" "{f0eeb71a-e5d6-48e6-a818-568a6bef1bc0}")
     ];
 }
